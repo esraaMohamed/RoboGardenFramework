@@ -1,7 +1,6 @@
 package testcases;
 
 import org.junit.Assert;
-import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -40,6 +39,6 @@ public class LoginTest extends BaseTest{
 	@Test(priority = 2)
 	public void logout() {
 		loginConfiguration.logout();
-		AssertJUnit.assertTrue("Logout Failed", driver.getCurrentUrl().contains("home"));
+		Assert.assertTrue("Logout Failed", driver.getCurrentUrl().contains("home"));
 	}
 }
