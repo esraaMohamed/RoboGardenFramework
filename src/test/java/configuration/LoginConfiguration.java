@@ -26,5 +26,18 @@ public class LoginConfiguration {
 	public boolean isUserLoggedIn() {
 		return homePage.isUsernameVisibile();
 	}
-
+	
+	public void invalidLogin(String username, String password) {
+		loginPage.clickLogin()
+		.setUsername(username)
+		.setPassword(password)
+		.clickPopupLoginButton();
+	}
+	
+	public String getWrongUsernameAndPasswordText() {
+		String text = loginPage.getWrongUsernameAndPasswordPopupText();
+		loginPage.clickCloseWrongUsernamePasswordPopup();
+		return text;
+	}
+	
 }

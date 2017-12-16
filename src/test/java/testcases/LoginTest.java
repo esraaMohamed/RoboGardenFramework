@@ -38,9 +38,8 @@ public class LoginTest extends BaseTest {
      */
     @Test(priority = 1)
     public void invalidLogin() {
-        loginConfiguration.invalidlogin(username, password);
-        //TODO
-        Assert.assertTrue("Login Failed", loginConfiguration.isUserLoggedIn());
+        loginConfiguration.invalidLogin(failedUsername, failedPassword);
+        Assert.assertEquals("Wrong Username or Password, Please try again!", loginConfiguration.getWrongUsernameAndPasswordText());
     }
 
     /**

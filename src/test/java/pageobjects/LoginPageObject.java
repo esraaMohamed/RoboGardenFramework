@@ -16,6 +16,12 @@ public class LoginPageObject extends BasePage{
 	
 	@FindBy(id = "login-popup")
 	private WebElement popupLoginButton;
+	
+	@FindBy(css = ".sweet-alert.showSweetAlert.visible>p")
+	private WebElement wrongUsernamePasswordPopup;
+	
+	@FindBy(css = ".confirm")
+	private WebElement closeWrongUsernamePasswordPopupButton;
 
 	@FindBy(xpath = ".//*[@id='page-wrapper']/div[2]/div/div/section[2]/div/div/div[1]/div/div[1]/div/div[1]")
 	private WebElement journey;
@@ -65,5 +71,13 @@ public class LoginPageObject extends BasePage{
 	
 	public void clickPopupLoginButton() {
 		click(popupLoginButton);
+	}
+	
+	public String getWrongUsernameAndPasswordPopupText() {
+		return wrongUsernamePasswordPopup.getText();
+	}
+	
+	public void clickCloseWrongUsernamePasswordPopup() {
+		click(closeWrongUsernamePasswordPopupButton);
 	}
 }
