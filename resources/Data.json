@@ -3,4 +3,8 @@
 		"username": "maged123456",
 		"password": "maged123456"
 	}
+	"invalidLogin": {
+		"username": "invalidUsername",
+		"password": "invalidPassword"
+	}
 }
