@@ -1,6 +1,6 @@
 package testcases;
 
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -30,7 +30,6 @@ public class LoginTest extends BaseTest {
         password = jsonTestData.getData("Login").get("password");
         failedUsername = jsonTestData.getData("invalidLogin").get("username");
         failedPassword = jsonTestData.getData("invalidLogin").get("password");
-
     }
 
     /**
@@ -43,12 +42,12 @@ public class LoginTest extends BaseTest {
     }
 
     /**
-     * Verifying login functionality
+     * Verifying valid login functionality
      */
     @Test(priority = 2)
-    public void login() {
-        loginConfiguration.login(username, password);
-        Assert.assertTrue("Login Failed", loginConfiguration.isUserLoggedIn());
+    public void validLogin() {
+        loginConfiguration.validLogin(username, password);
+        Assert.assertTrue(loginConfiguration.isUserLoggedIn(), "Login Failed");
     }
 
     /**
@@ -57,6 +56,6 @@ public class LoginTest extends BaseTest {
     @Test(priority = 3)
     public void logout() {
         loginConfiguration.logout();
-        Assert.assertTrue("Logout Failed", driver.getCurrentUrl().contains("home"));
+        Assert.assertTrue(driver.getCurrentUrl().contains("home"), "Logout Failed");
     }
 }
