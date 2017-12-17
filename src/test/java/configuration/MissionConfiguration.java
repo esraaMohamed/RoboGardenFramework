@@ -1,15 +1,15 @@
 package configuration;
 
-import pageobjects.MissonPageObject;
+import pageobjects.MissionPageObject;
 import pageobjects.RoadMapPageObject;
 
 public class MissionConfiguration {
 
-    MissonPageObject missionPage;
+    MissionPageObject missionPage;
 
     RoadMapPageObject roadMapPage;
 
-    public MissionConfiguration(MissonPageObject missionPage, RoadMapPageObject roadMapPage) {
+    public MissionConfiguration(MissionPageObject missionPage, RoadMapPageObject roadMapPage) {
         this.missionPage = missionPage;
         this.roadMapPage = roadMapPage;
     }
