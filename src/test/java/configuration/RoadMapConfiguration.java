@@ -18,7 +18,6 @@ public class RoadMapConfiguration {
 
 
 	public void clickOnMission() {
-		missionConfiguration.failedMissionCheck();
 		roadMapPage.clickSlickDotByIndex(0);
 		roadMapPage.clickMissionByIndex(0);
 		int missionsSize = roadMapPage.getMissionsSize();
@@ -28,6 +27,7 @@ public class RoadMapConfiguration {
 				roadMapPage.clickNextSlickDot();
 				roadMapPage.clickMissionByIndex(i);
 			}
+			missionConfiguration.failedMissionCheck();
 			missionConfiguration.missionCheck();
 
 		}
