@@ -1,5 +1,6 @@
 package pageobjects;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -47,6 +48,15 @@ public class BasePage {
 
 	public void waitForVisibilityOf(final WebElement element) {
 		wait.until(ExpectedConditions.visibilityOf(element));
+	}
+	
+	public void clickByAction(WebElement element){
+	    action.moveToElement(element).click().perform();
+	}
+	
+	public void clickByJavaExecutor(WebElement element){
+	    JavascriptExecutor jse = (JavascriptExecutor)driver;
+        jse.executeScript("arguments[0].click();", element);
 	}
 
 }

@@ -35,19 +35,20 @@ public class MissionPageObject extends BasePage {
     }
 
     public MissionPageObject clickSettingButton() {
+        waitForVisibilityOf(actions);
+        hover(actions);
         click(actions);
         return this;
     }
 
-    public MissionPageObject clickModelAnswerButton() {
+    public MissionPageObject clickModelAnswerButton() throws InterruptedException {
         waitForVisibilityOf(modelAnswer);
         click(modelAnswer);
         return this;
     }
 
     public MissionPageObject clickRunButton() throws InterruptedException {
-        Thread.sleep(3000);
-        click(runButton);
+        clickByJavaExecutor(runButton);
         return this;
     }
 
