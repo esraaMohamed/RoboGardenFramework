@@ -9,23 +9,28 @@ public class MissionConfiguration {
 
     RoadMapPageObject roadMapPage;
 
+    String failedText, successText;
+
     public MissionConfiguration(MissionPageObject missionPage, RoadMapPageObject roadMapPage) {
         this.missionPage = missionPage;
         this.roadMapPage = roadMapPage;
     }
 
     public String failedMissionCheck() {
-        missionPage.closeMissionHint().clickRunButton();
-        String text = missionPage.dialogueText();
+        missionPage.closeMissionHint()
+        .clickRunButton();
+        failedText = missionPage.dialogueText();
         missionPage.clickContinueButton();
-        return text;
+        return failedText;
     }
-    
-    public void missionCheck(){
+
+    public String missionCheck() {
         missionPage.clickSettingButton()
         .clickModelAnswerButton()
-        .clickRunButton()
-        .clickContinueButton();
+        .clickRunButton();
+        successText = missionPage.dialogueText();
+        missionPage.clickContinueButton();
+        return successText;
     }
 
 }

@@ -29,6 +29,7 @@ public class MissionPageObject extends BasePage {
     }
 
     public MissionPageObject closeMissionHint() {
+        waitForVisibilityOf(missionTutorial);
         click(missionTutorial);
         return this;
     }
@@ -39,6 +40,7 @@ public class MissionPageObject extends BasePage {
     }
 
     public MissionPageObject clickModelAnswerButton() {
+        waitForVisibilityOf(modelAnswer);
         click(modelAnswer);
         return this;
     }
@@ -49,6 +51,7 @@ public class MissionPageObject extends BasePage {
     }
 
     public String dialogueText() {
+        waitForVisibilityOf(popupTitle);
         return popupTitle.getText();
     }
 

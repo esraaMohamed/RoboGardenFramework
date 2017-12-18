@@ -28,7 +28,7 @@ public class RoadMapPageObject extends BasePage{
 	}
 
 	public RoadMapPageObject closeHintWindow() {
-		waitForVisibilityOf(By.cssSelector(".enjoyhint_close_btn"));
+		waitForVisibilityOf(hintClose);
 		try {
 			click(hintClose);
 		} catch(ElementNotFoundException elementNotFoundException) {
@@ -56,7 +56,7 @@ public class RoadMapPageObject extends BasePage{
 	}
 
 	public RoadMapPageObject clickNextSlickDot() {
-		waitForVisibilityOf(By.cssSelector(".slick-next"));
+		waitForVisibilityOf(nextSlickDot);
 		click(nextSlickDot);
 		return this;
 	}

@@ -46,8 +46,8 @@ public class BasePage {
 	}
 
 
-	public void waitForVisibilityOf(final By locator) {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+	public void waitForVisibilityOf(final WebElement element) {
+		wait.until(ExpectedConditions.visibilityOf(element));
 	}
 
 }
