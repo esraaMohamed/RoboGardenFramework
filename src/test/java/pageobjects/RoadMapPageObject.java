@@ -55,8 +55,9 @@ public class RoadMapPageObject extends BasePage{
 		return missions.size();
 	}
 
-	public RoadMapPageObject clickNextSlickDot() {
+	public RoadMapPageObject clickNextSlickDot() throws InterruptedException {
 		waitForVisibilityOf(nextSlickDot);
+		Thread.sleep(3000);
 		click(nextSlickDot);
 		return this;
 	}
