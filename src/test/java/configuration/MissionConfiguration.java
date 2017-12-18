@@ -16,7 +16,7 @@ public class MissionConfiguration {
         this.roadMapPage = roadMapPage;
     }
 
-    public String failedMissionCheck() {
+    public String failedMissionCheck() throws InterruptedException {
         missionPage.closeMissionHint()
         .clickRunButton();
         failedText = missionPage.dialogueButtonText();
@@ -24,7 +24,7 @@ public class MissionConfiguration {
         return failedText;
     }
 
-    public String missionCheck() {
+    public String missionCheck() throws InterruptedException {
         missionPage.clickSettingButton()
         .clickModelAnswerButton()
         .clickRunButton();

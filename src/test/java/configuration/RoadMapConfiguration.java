@@ -27,7 +27,7 @@ public class RoadMapConfiguration {
 		roadMapPage.closeHintWindow();
 	}
 
-	public void clickOnMission() {
+	public void clickOnMission() throws InterruptedException {
 		roadMapPage.clickSlickDotByIndex(0);
 		roadMapPage.clickMissionByIndex(0);
 		int missionsSize = roadMapPage.getMissionsSize();

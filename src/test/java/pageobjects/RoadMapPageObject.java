@@ -46,6 +46,7 @@ public class RoadMapPageObject extends BasePage{
 	}
 
 	public RoadMapPageObject clickMissionByIndex(int index) {
+	    waitForVisibilityOf(missions.get(index));
 		click(missions.get(index));
 		return this;
 	}

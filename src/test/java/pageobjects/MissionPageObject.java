@@ -45,7 +45,8 @@ public class MissionPageObject extends BasePage {
         return this;
     }
 
-    public MissionPageObject clickRunButton() {
+    public MissionPageObject clickRunButton() throws InterruptedException {
+        Thread.sleep(3000);
         click(runButton);
         return this;
     }

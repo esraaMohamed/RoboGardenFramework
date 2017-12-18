@@ -48,9 +48,10 @@ public class RegressionTest extends BaseTest{
 
 	/**
 	 * Verifying Regression Scenario functionality
+	 * @throws InterruptedException 
 	 */
 	@Test(priority = 1)
-	public void regression() {
+	public void regression() throws InterruptedException {
 		journeyPage = loginConfiguration.validLogin(username, password);
 		roadMapPage = journeyConfiguration.clickPlayNowButton();
 		roadMapConfiguration.closeHint();
