@@ -50,9 +50,9 @@ public class MissionPageObject extends BasePage {
         return this;
     }
 
-    public String dialogueText() {
-        waitForVisibilityOf(popupTitle);
-        return popupTitle.getText();
+    public String dialogueButtonText() {
+        waitForVisibilityOf(checkAnswerButton);
+        return checkAnswerButton.getText();
     }
 
     public void clickContinueButton() {

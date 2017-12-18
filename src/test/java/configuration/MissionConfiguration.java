@@ -19,7 +19,7 @@ public class MissionConfiguration {
     public String failedMissionCheck() {
         missionPage.closeMissionHint()
         .clickRunButton();
-        failedText = missionPage.dialogueText();
+        failedText = missionPage.dialogueButtonText();
         missionPage.clickContinueButton();
         return failedText;
     }
@@ -28,7 +28,7 @@ public class MissionConfiguration {
         missionPage.clickSettingButton()
         .clickModelAnswerButton()
         .clickRunButton();
-        successText = missionPage.dialogueText();
+        successText = missionPage.dialogueButtonText();
         missionPage.clickContinueButton();
         return successText;
     }
