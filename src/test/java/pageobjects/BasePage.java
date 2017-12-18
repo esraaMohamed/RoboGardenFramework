@@ -11,7 +11,7 @@ public class BasePage {
 
 	protected WebDriver driver;
 	
-	public int time = 30;
+	public int time = 50;
 
 	Actions action;
 
