@@ -1,5 +1,9 @@
 package testcases;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -22,6 +26,7 @@ public class RegressionTest extends BaseTest{
 	JourneyConfiguration journeyConfiguration;
 	RoadMapConfiguration roadMapConfiguration;
 	String username, password;
+	List<String> failedTextAssertion , successTextAssertion;
 
 	@BeforeTest
 	public void init() {
@@ -35,6 +40,10 @@ public class RegressionTest extends BaseTest{
 		roadMapConfiguration = new RoadMapConfiguration(roadMapPage, missionPage);
 		username = jsonTestData.getData("Login").get("username");
 		password = jsonTestData.getData("Login").get("password");
+		failedTextAssertion = new ArrayList<String>();
+		successTextAssertion = new ArrayList<String>();
+		failedTextAssertion.add("Retry Mission");
+		successTextAssertion.add("Go to next mission");
 	}
 
 	/**
@@ -45,5 +54,10 @@ public class RegressionTest extends BaseTest{
 		journeyPage = loginConfiguration.validLogin(username, password);
 		roadMapPage = journeyConfiguration.clickPlayNowButton();
 		roadMapConfiguration.closeHint();
+		roadMapConfiguration.clickOnMission();
+//		System.out.println(roadMapConfiguration.getFailedTextForAssertion().size());
+//		System.out.println(failedTextAssertion.size());
+		Assert.assertEquals(failedTextAssertion, roadMapConfiguration.getFailedTextForAssertion());
+		Assert.assertEquals(successTextAssertion, roadMapConfiguration.getSuccessTextForAssertion());
 	}
 }
