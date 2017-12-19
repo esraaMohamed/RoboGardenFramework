@@ -41,12 +41,13 @@ public class RoadMapConfiguration {
                 continue;
             }
             successText = missionConfiguration.missionCheck();
-            if (!successText.equals("GO TO NEXT MISSION") || !successText.equals("BACK TO ROADMAP")) {
+            if (!(successText.equals("GO TO NEXT MISSION")) || !(successText.equals("BACK TO ROADMAP"))) {
                 if ((i + 1) % 5 != 0) {
                     getFailedMission();
                     missionConfiguration.backToRoadmap();
                     roadMapPage.clickMissionByIndex(i + 1);
                 } else {
+                    getFailedMission();
                     missionConfiguration.backToRoadmap();
                 }
             }
