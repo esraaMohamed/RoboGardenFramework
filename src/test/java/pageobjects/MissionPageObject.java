@@ -8,7 +8,10 @@ public class MissionPageObject extends BasePage {
 
     @FindBy(css = ".close.ng-scope")
     private WebElement missionTutorial;
-
+    
+    @FindBy(css = ".close")
+    private WebElement dialogueCloseButton;
+    
     @FindBy(id = "actions")
     private WebElement actions;
 
@@ -23,6 +26,9 @@ public class MissionPageObject extends BasePage {
 
     @FindBy(id = "check_answer_button")
     private WebElement checkAnswerButton;
+
+    @FindBy(css = ".btn.btn-garden.ml-50")
+    private WebElement roadmapButton;
 
     public MissionPageObject(WebDriver driver) {
         super(driver);
@@ -60,5 +66,20 @@ public class MissionPageObject extends BasePage {
     public void clickContinueButton() {
         click(checkAnswerButton);
     }
+
+    public void clickRoadmapButton() {
+        waitForVisibilityOf(roadmapButton);
+        hover(roadmapButton);
+        clickByJavaExecutor(roadmapButton);
+    }
+
+    public String getPageURL() {
+        return driver.getCurrentUrl();
+    }
+    
+    public void clickDialogueCloseButton(){
+        click(dialogueCloseButton);
+    }
+    
 
 }

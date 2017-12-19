@@ -30,7 +30,7 @@ public class RoadMapPageObject extends BasePage{
 		waitForVisibilityOf(hintClose);
 		try {
 			click(hintClose);
-		} catch(ElementNotVisibleException elementNotFoundException) {
+		} catch(ElementNotVisibleException elementNotVisibleException) {
 			System.out.println("Hint was shown before");
 		}
 		return this;
@@ -47,7 +47,7 @@ public class RoadMapPageObject extends BasePage{
 
 	public RoadMapPageObject clickMissionByIndex(int index) {
 	    waitForVisibilityOf(missions.get(index));
-		click(missions.get(index));
+		clickByJavaExecutor(missions.get(index));
 		return this;
 	}
 

@@ -9,7 +9,9 @@ public class MissionConfiguration {
 
     RoadMapPageObject roadMapPage;
 
-    String failedText, successText;
+    String failedText, successText, failedMissionId, title;
+
+    String[] urlSubString, urlSubString1;
 
     public MissionConfiguration(MissionPageObject missionPage, RoadMapPageObject roadMapPage) {
         this.missionPage = missionPage;
@@ -31,6 +33,18 @@ public class MissionConfiguration {
         successText = missionPage.dialogueButtonText();
         missionPage.clickContinueButton();
         return successText;
+    }
+    
+    public void backToRoadmap(){
+        missionPage.clickRoadmapButton();
+    }
+
+    public String getFailedMissionTest() {
+        title = missionPage.getPageURL();
+        urlSubString = title.split("/");
+        urlSubString1 = urlSubString[urlSubString.length - 1].split("\\?");
+        failedMissionId = urlSubString[urlSubString.length - 2] + "-" + urlSubString1[0];
+        return failedMissionId;
     }
 
 }
