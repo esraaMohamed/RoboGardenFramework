@@ -36,12 +36,14 @@ public class RoadMapConfiguration {
                 roadMapPage.clickMissionByIndex(i);
             }
             failedText = missionConfiguration.failedMissionCheck();
+            System.out.println(failedText);
             if (!failedText.equals("RETRY MISSION")) {
                 getFailedMission();
                 continue;
             }
             successText = missionConfiguration.missionCheck();
-            if (!(successText.equals("GO TO NEXT MISSION")) || !(successText.equals("BACK TO ROADMAP"))) {
+            System.out.println(successText);
+            if (!((successText.equals("GO TO NEXT MISSION")) || (successText.equals("BACK TO ROADMAP")))) {
                 if ((i + 1) % 5 != 0) {
                     getFailedMission();
                     missionConfiguration.backToRoadmap();
