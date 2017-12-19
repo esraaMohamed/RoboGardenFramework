@@ -37,11 +37,11 @@ public class MissionPageObject extends BasePage {
     public MissionPageObject clickSettingButton() {
         waitForVisibilityOf(actions);
         hover(actions);
-        click(actions);
+        action.moveToElement(actions).click().perform();
         return this;
     }
 
-    public MissionPageObject clickModelAnswerButton() throws InterruptedException {
+    public MissionPageObject clickModelAnswerButton() {
         waitForVisibilityOf(modelAnswer);
         click(modelAnswer);
         return this;
