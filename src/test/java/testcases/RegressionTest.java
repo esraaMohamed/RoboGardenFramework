@@ -42,8 +42,10 @@ public class RegressionTest extends BaseTest{
 		password = jsonTestData.getData("Login").get("password");
 		failedTextAssertion = new ArrayList<String>();
 		successTextAssertion = new ArrayList<String>();
-		failedTextAssertion.add("Retry Mission");
-		successTextAssertion.add("Go to next mission");
+		for(int i=0; i<40;i++) {
+			failedTextAssertion.add(i, "Retry Mission");
+			successTextAssertion.add(i, "Go to next mission");
+		}
 	}
 
 	/**
@@ -56,8 +58,8 @@ public class RegressionTest extends BaseTest{
 		roadMapPage = journeyConfiguration.clickPlayNowButton();
 		roadMapConfiguration.closeHint();
 		roadMapConfiguration.clickOnMission();
-//		System.out.println(roadMapConfiguration.getFailedTextForAssertion().size());
-//		System.out.println(failedTextAssertion.size());
+		//		System.out.println(roadMapConfiguration.getFailedTextForAssertion().size());
+		//		System.out.println(failedTextAssertion.size());
 		Assert.assertEquals(failedTextAssertion, roadMapConfiguration.getFailedTextForAssertion());
 		Assert.assertEquals(successTextAssertion, roadMapConfiguration.getSuccessTextForAssertion());
 	}
