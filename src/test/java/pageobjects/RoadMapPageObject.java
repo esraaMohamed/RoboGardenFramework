@@ -2,11 +2,11 @@ package pageobjects;
 
 import java.util.List;
 
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import com.gargoylesoftware.htmlunit.ElementNotFoundException;
 
 public class RoadMapPageObject extends BasePage{
 
@@ -30,7 +30,7 @@ public class RoadMapPageObject extends BasePage{
 		waitForVisibilityOf(hintClose);
 		try {
 			click(hintClose);
-		} catch(ElementNotFoundException elementNotFoundException) {
+		} catch(ElementNotVisibleException elementNotVisibleException) {
 			System.out.println("Hint was shown before");
 		}
 		return this;
@@ -46,7 +46,8 @@ public class RoadMapPageObject extends BasePage{
 	}
 
 	public RoadMapPageObject clickMissionByIndex(int index) {
-		click(missions.get(index));
+	    waitForVisibilityOf(missions.get(index));
+		clickByJavaExecutor(missions.get(index));
 		return this;
 	}
 
@@ -54,8 +55,9 @@ public class RoadMapPageObject extends BasePage{
 		return missions.size();
 	}
 
-	public RoadMapPageObject clickNextSlickDot() {
+	public RoadMapPageObject clickNextSlickDot() throws InterruptedException {
 		waitForVisibilityOf(nextSlickDot);
+		Thread.sleep(3000);
 		click(nextSlickDot);
 		return this;
 	}
