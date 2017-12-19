@@ -17,7 +17,7 @@ public class JourneyPageObject extends BasePage{
 	
 	public RoadMapPageObject clickOnPlayNowButton() {
 		hover(playNowButton.get(0));
-		click(playNowButton.get(0));
+		clickByJavaExecutor(playNowButton.get(0));
 		return new RoadMapPageObject(driver);
 	}
 
