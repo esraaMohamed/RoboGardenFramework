@@ -65,14 +65,12 @@ public class RegressionTest extends BaseTest {
         roadMapConfiguration.closeHint();
         roadMapConfiguration.clickOnMission();
         failedMissions = roadMapConfiguration.getFailedTextForAssertion();
-        try {
-            Assert.assertNull(failedMissions, "There are failed missions");
-        } catch (Exception e) {
+        if (failedMissions.size() > 0) {
             System.out.println("Failed missions are:");
             for (int i = 0; i < failedMissions.size(); i++) {
                 System.out.println(failedMissions.get(i));
             }
+            Assert.fail("There are errors in testing missions");
         }
-
     }
 }

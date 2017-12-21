@@ -36,18 +36,19 @@ public class MissionPageObject extends BasePage {
 
     public MissionPageObject closeMissionHint() {
         waitForVisibilityOf(missionTutorial);
-        click(missionTutorial);
+        clickByJavaExecutor(missionTutorial);
         return this;
     }
 
-    public MissionPageObject clickSettingButton() {
+    public MissionPageObject clickSettingButton() throws InterruptedException {
         waitForVisibilityOf(actions);
+        clickByJavaExecutor(actions);
+        Thread.sleep(500);
         hover(actions);
-        action.moveToElement(actions).click().perform();
         return this;
     }
 
-    public MissionPageObject clickModelAnswerButton() {
+    public MissionPageObject clickModelAnswerButton() throws InterruptedException {
         waitForVisibilityOf(modelAnswer);
         click(modelAnswer);
         return this;
@@ -64,7 +65,8 @@ public class MissionPageObject extends BasePage {
     }
 
     public void clickContinueButton() {
-        click(checkAnswerButton);
+        waitForVisibilityOf(checkAnswerButton);
+        clickByJavaExecutor(checkAnswerButton);
     }
 
     public void clickRoadmapButton() {
