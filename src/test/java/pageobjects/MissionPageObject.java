@@ -6,12 +6,12 @@ import org.openqa.selenium.support.FindBy;
 
 public class MissionPageObject extends BasePage {
 
-    @FindBy(css = ".close.ng-scope")
+    @FindBy(css = ".nivo-lightbox-close")
     private WebElement missionTutorial;
-    
+
     @FindBy(css = ".close")
     private WebElement dialogueCloseButton;
-    
+
     @FindBy(id = "actions")
     private WebElement actions;
 
@@ -30,6 +30,12 @@ public class MissionPageObject extends BasePage {
     @FindBy(css = ".btn.btn-garden.ml-50")
     private WebElement roadmapButton;
 
+    @FindBy(css = ".go_next.animated.bounceInDown.ng-binding.ng-scope")
+    private WebElement successButton;
+
+    @FindBy(css = ".bonus_div")
+    private WebElement objectiveButton;
+
     public MissionPageObject(WebDriver driver) {
         super(driver);
     }
@@ -37,6 +43,12 @@ public class MissionPageObject extends BasePage {
     public MissionPageObject closeMissionHint() {
         waitForVisibilityOf(missionTutorial);
         clickByJavaExecutor(missionTutorial);
+        return this;
+    }
+    
+    public MissionPageObject clickObjectiveButton(){
+        waitForVisibilityOf(objectiveButton);
+        clickByJavaExecutor(objectiveButton);
         return this;
     }
 
@@ -59,13 +71,12 @@ public class MissionPageObject extends BasePage {
         return this;
     }
 
-    public String dialogueButtonText() {
+    public String failRunButtonText() {
         waitForVisibilityOf(checkAnswerButton);
         return checkAnswerButton.getText();
     }
 
-    public void clickContinueButton() {
-        waitForVisibilityOf(checkAnswerButton);
+    public void clickRetryButton() {
         clickByJavaExecutor(checkAnswerButton);
     }
 
@@ -78,10 +89,28 @@ public class MissionPageObject extends BasePage {
     public String getPageURL() {
         return driver.getCurrentUrl();
     }
-    
-    public void clickDialogueCloseButton(){
+
+    public void clickDialogueCloseButton() {
         click(dialogueCloseButton);
     }
-    
+
+    public String successRunButtonText() {
+        try{
+            waitForVisibilityOf(successButton);
+            return successButton.getText();
+        }catch (Exception e){
+            return checkAnswerButton.getText();
+        }
+        
+    }
+
+    public void clickContinueButton() {
+        try{
+            clickByJavaExecutor(successButton);
+        }catch (Exception e){
+             clickByJavaExecutor(checkAnswerButton);
+        }
+        
+    }
 
 }

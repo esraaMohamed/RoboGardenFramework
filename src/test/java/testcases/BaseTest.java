@@ -19,54 +19,67 @@ import datareaders.JsonClass;
 import utilities.CaptureScreenShotHandler;
 
 public class BaseTest {
-	public static WebDriver driver;
-	public static JsonClass jsonTestData;
-	public static String BaseURl;
 
-	@BeforeSuite
-	@Parameters({ "browser", "URL" })
-	public void startDriver(@Optional("firefox") String WindowBrowser,
-			@Optional("https://qc.rgp-dev.com/home") String URL) {
-		jsonTestData = new JsonClass();
-		if (WindowBrowser.equalsIgnoreCase("firefox")) {
-			System.setProperty("webdriver.gecko.driver",
-					System.getProperty("user.dir") 
-					+ File.separator + "resources"
-					+ File.separator + "geckodriver");
-			driver = new FirefoxDriver();
-		}
-		else if (WindowBrowser.equalsIgnoreCase("chrome")) {
-			System.setProperty("webdriver.gecko.driver",
-					System.getProperty("user.dir") 
-					+ File.separator + "resources"
-					+ File.separator + "geckodriver");
-			System.setProperty("webdriver.chrome.driver",
-					System.getProperty("user.dir") 
-					+ File.separator + "resources"
-					+ File.separator + "chromedriver");
-			driver = new ChromeDriver();
-		}
-		else if (WindowBrowser.equalsIgnoreCase("safari")) {
-			driver = new SafariDriver();
+    public static WebDriver driver;
 
-		}
-		//driver.manage().window().maximize();
-		driver.manage().window().setSize(new Dimension(1440, 810));
-		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-		BaseURl = URL;
-		driver.get(BaseURl);
-	}
+    public static JsonClass jsonTestData;
 
-	@AfterSuite(alwaysRun=true)
-	public void stopDriver() {
-		driver.quit();
-	}
+    public static String BaseURl;
 
+    @BeforeSuite
+    @Parameters({ "browser", "URL" })
+    public void startDriver(@Optional("firefox") String WindowBrowser, @Optional("https://qc.rgp-dev.com/home") String URL) {
+        jsonTestData = new JsonClass();
+        final String os = System.getProperty("os.name");
+        final String userDirectory = System.getProperty("user.dir");
+        if (WindowBrowser.equalsIgnoreCase("firefox")) {
+            final StringBuilder geckoDriverPath = new StringBuilder();
+            geckoDriverPath.append(userDirectory + File.separator + "resources");
+            if (os.contains("Mac OS")) {
+                geckoDriverPath.append(File.separator + "mac" + File.separator + "geckodriver");
+            } else if (os.contains("Windows")) {
+                geckoDriverPath.append(File.separator + "win" + File.separator + "geckodriver.exe");
+            }
+            System.setProperty("webdriver.gecko.driver", geckoDriverPath.toString());
+            driver = new FirefoxDriver();
+        } else if (WindowBrowser.equalsIgnoreCase("chrome")) {
+            final StringBuilder chromeDriverPath = new StringBuilder();
+            chromeDriverPath.append(userDirectory + File.separator + "resources");
+            if (os.contains("Mac OS")) {
+                chromeDriverPath.append(File.separator + "mac" + File.separator + "chromedriver");
+            } else if (os.contains("Windows")) {
+                chromeDriverPath.append(File.separator + "win" + File.separator + "chromedriver.exe");
+            }
+            final StringBuilder geckoDriverPath = new StringBuilder();
+            geckoDriverPath.append(userDirectory + File.separator + "resources");
+            if (os.contains("Mac OS")) {
+                geckoDriverPath.append(File.separator + "mac" + File.separator + "geckodriver");
+            } else if (os.contains("Windows")) {
+                geckoDriverPath.append(File.separator + "win" + File.separator + "geckodriver.exe");
+            }
+            System.setProperty("webdriver.gecko.driver", geckoDriverPath.toString());
+            System.setProperty("webdriver.chrome.driver", chromeDriverPath.toString());
+            driver = new ChromeDriver();
+        } else if (WindowBrowser.equalsIgnoreCase("safari")) {
+            driver = new SafariDriver();
 
-	@AfterMethod
-	public void screeshotOnFailure(ITestResult result){
-		if (result.getStatus() == ITestResult.FAILURE) {
-			CaptureScreenShotHandler.captureScreenshot(driver, result.getName());
-		}
-	}
+        }
+        // driver.manage().window().maximize();
+        driver.manage().window().setSize(new Dimension(1440, 844));
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        BaseURl = URL;
+        driver.get(BaseURl);
+    }
+
+    @AfterSuite(alwaysRun = true)
+    public void stopDriver() {
+        driver.quit();
+    }
+
+    @AfterMethod
+    public void screeshotOnFailure(ITestResult result) {
+        if (result.getStatus() == ITestResult.FAILURE) {
+            CaptureScreenShotHandler.captureScreenshot(driver, result.getName());
+        }
+    }
 }

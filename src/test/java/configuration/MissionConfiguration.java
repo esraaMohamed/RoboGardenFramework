@@ -20,9 +20,10 @@ public class MissionConfiguration {
 
     public String failedMissionCheck() throws InterruptedException {
         missionPage.closeMissionHint()
+        .clickObjectiveButton()
         .clickRunButton();
-        failedText = missionPage.dialogueButtonText();
-        missionPage.clickContinueButton();
+        failedText = missionPage.failRunButtonText();
+        missionPage.clickRetryButton();
         return failedText;
     }
 
@@ -30,7 +31,7 @@ public class MissionConfiguration {
         missionPage.clickSettingButton()
         .clickModelAnswerButton()
         .clickRunButton();
-        successText = missionPage.dialogueButtonText();
+        successText = missionPage.successRunButtonText();
         missionPage.clickContinueButton();
         return successText;
     }

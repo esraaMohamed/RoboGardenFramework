@@ -30,6 +30,7 @@ public class RoadMapConfiguration {
         roadMapPage.clickMissionByIndex(0);
         int missionsSize = roadMapPage.getMissionsSize();
         for (int i = 0; i < missionsSize; i++) {
+            System.out.println("mission: " + i);
             // every 5 missions will do the following
             if (i != 0 && i % 5 == 0) {
                 roadMapPage.clickNextSlickDot();
@@ -37,19 +38,19 @@ public class RoadMapConfiguration {
             }
             failedText = missionConfiguration.failedMissionCheck();
             if (!failedText.equals("RETRY MISSION")) {
-                System.out.println("Failed mission number in failuer case: "+(i+1));
+                System.out.println("Failed mission number in failuer case: " + (i + 1));
                 getFailedMission();
                 continue;
             }
             successText = missionConfiguration.missionCheck();
-            if (!((successText.equals("GO TO NEXT MISSION")) || (successText.equals("BACK TO ROADMAP")))) {
+            if (!((successText.equals("Go to next mission")) || (successText.equals("Back To Roadmap")))) {
                 if ((i + 1) % 5 != 0) {
-                    System.out.println("Failed mission number in success case: "+(i+1));
+                    System.out.println("Failed mission number in success case: " + (i + 1));
                     getFailedMission();
                     missionConfiguration.backToRoadmap();
                     roadMapPage.clickMissionByIndex(i + 1);
                 } else {
-                    System.out.println("Failed mission number in success case: "+(i+1));
+                    System.out.println("Failed mission number in success case: " + (i + 1));
                     getFailedMission();
                     missionConfiguration.backToRoadmap();
                 }
@@ -64,5 +65,9 @@ public class RoadMapConfiguration {
     public void getFailedMission() {
         failedMission = missionConfiguration.getFailedMissionTest();
         failedTextObj.add(failedMission);
+    }
+
+    public void clickJourneyButton() {
+        roadMapPage.clickJourneyButton();
     }
 }

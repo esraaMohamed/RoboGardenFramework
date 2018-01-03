@@ -12,7 +12,7 @@ public class BasePage {
 
 	protected WebDriver driver;
 	
-	public int time = 50;
+	public int time = 150;
 
 	Actions action;
 
@@ -57,6 +57,11 @@ public class BasePage {
 	public void clickByJavaExecutor(WebElement element){
 	    JavascriptExecutor jse = (JavascriptExecutor)driver;
         jse.executeScript("arguments[0].click();", element);
+	}
+	
+	public void scrollIntoView(WebElement element){
+	    JavascriptExecutor jse = (JavascriptExecutor)driver;
+	    jse.executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 
 }

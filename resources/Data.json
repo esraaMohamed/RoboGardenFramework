@@ -7,4 +7,7 @@
 		"username": "invalidUsername",
 		"password": "invalidPassword"
 	}
+	"Journey": {
+		"journeyIndexNumber": "0"
+	}
 }
