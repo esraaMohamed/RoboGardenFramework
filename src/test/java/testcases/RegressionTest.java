@@ -78,7 +78,7 @@ public class RegressionTest extends BaseTest {
     }
 
     /**
-     * Verifying Regression Scenario for specific journey functionality
+     * Verifying Regression Scenario for all journeys functionality
      * 
      * @throws InterruptedException
      */
