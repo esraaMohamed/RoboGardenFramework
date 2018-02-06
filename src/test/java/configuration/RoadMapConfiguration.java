@@ -38,19 +38,19 @@ public class RoadMapConfiguration {
             }
             failedText = missionConfiguration.failedMissionCheck();
             if (!failedText.equals("RETRY MISSION")) {
-                System.out.println("Failed mission number in failuer case: " + (i + 1));
+                System.out.println("Failed mission number in failuer case: "+(i+1));
                 getFailedMission();
                 continue;
             }
             successText = missionConfiguration.missionCheck();
-            if (!((successText.equals("Go to next mission")) || (successText.equals("Back To Roadmap")))) {
+            if (!((successText.equals("GO TO NEXT MISSION")) || (successText.equals("BACK TO ROADMAP")))) {
                 if ((i + 1) % 5 != 0) {
-                    System.out.println("Failed mission number in success case: " + (i + 1));
+                    System.out.println("Failed mission number in success case: "+(i+1));
                     getFailedMission();
                     missionConfiguration.backToRoadmap();
                     roadMapPage.clickMissionByIndex(i + 1);
                 } else {
-                    System.out.println("Failed mission number in success case: " + (i + 1));
+                    System.out.println("Failed mission number in success case: "+(i+1));
                     getFailedMission();
                     missionConfiguration.backToRoadmap();
                 }

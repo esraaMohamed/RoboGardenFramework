@@ -61,7 +61,7 @@ public class RegressionTest extends BaseTest {
      * 
      * @throws InterruptedException
      */
-    @Test(priority = 1, enabled = true)
+    @Test(priority = 1, enabled = false)
     public void regressionForSpecificJourney() throws InterruptedException {
         journeyPage = loginConfiguration.validLogin(username, password);
         roadMapPage = journeyConfiguration.clickPlayNowButtonByIndex(Integer.valueOf(journeyIndexNumber));
@@ -82,11 +82,11 @@ public class RegressionTest extends BaseTest {
      * 
      * @throws InterruptedException
      */
-    @Test(priority = 2, enabled = false)
+    @Test(priority = 2, enabled = true)
     public void regressionForAllJourneys() throws InterruptedException {
         journeyPage = loginConfiguration.validLogin(username, password);
         journeyCount = journeyConfiguration.journeyCount();
-        for (int i = 3; i < journeyCount; i++) {
+        for (int i = 0; i < journeyCount; i++) {
             roadMapPage = journeyConfiguration.clickPlayNowButtonByIndex(i);
             if (i == 0)
                 roadMapConfiguration.closeHint();

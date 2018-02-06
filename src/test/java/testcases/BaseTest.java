@@ -28,7 +28,7 @@ public class BaseTest {
 
     @BeforeSuite
     @Parameters({ "browser", "URL" })
-    public void startDriver(@Optional("firefox") String WindowBrowser, @Optional("https://qc.rgp-dev.com/home") String URL) {
+    public void startDriver(@Optional("firefox") String WindowBrowser, @Optional("https://automation.robogarden.ca") String URL) {
         jsonTestData = new JsonClass();
         final String os = System.getProperty("os.name");
         final String userDirectory = System.getProperty("user.dir");

@@ -23,7 +23,7 @@ public class RoadMapPageObject extends BasePage {
 
     @FindBy(linkText = "Journeys")
     private WebElement journeyButton;
-
+    
     public RoadMapPageObject(WebDriver driver) {
         super(driver);
     }
