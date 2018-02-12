@@ -2,11 +2,11 @@
 	"Login": {
 		"username": "msharawi",
 		"password": "12345678"
-	}
+	},
 	"invalidLogin": {
 		"username": "invalidUsername",
 		"password": "invalidPassword"
-	}
+	},
 	"Journey": {
 		"journeyIndexNumber": "0"
 	}

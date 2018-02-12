@@ -40,5 +40,9 @@ public class LoginConfiguration {
 		loginPage.clickCloseWrongUsernamePasswordPopup();
 		return text;
 	}
+	
+	public boolean isLoginButtonDisplayed() {
+		return homePage.isLoginButtonDisplayed();
+	}
 
 }

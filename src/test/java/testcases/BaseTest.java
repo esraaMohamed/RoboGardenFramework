@@ -1,8 +1,14 @@
 package testcases;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.log4j.Logger;
+import org.apache.logging.log4j.core.config.ConfigurationSource;
+import org.apache.logging.log4j.core.config.Configurator;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,7 +23,6 @@ import org.testng.annotations.Parameters;
 
 import datareaders.JsonClass;
 import utilities.CaptureScreenShotHandler;
-
 public class BaseTest {
 
     public static WebDriver driver;
@@ -25,11 +30,17 @@ public class BaseTest {
     public static JsonClass jsonTestData;
 
     public static String BaseURl;
+    static Logger logger;
 
     @BeforeSuite
     @Parameters({ "browser", "URL" })
-    public void startDriver(@Optional("firefox") String WindowBrowser, @Optional("https://automation.robogarden.ca") String URL) {
+    public void startDriver(@Optional("firefox") String WindowBrowser, @Optional("https://automation.robogarden.ca") String URL) throws FileNotFoundException, IOException {
         jsonTestData = new JsonClass();
+        String log4jConfigFile = System.getProperty("user.dir") + File.separator + "resources"
+                + File.separator + "log4j.properties";
+		ConfigurationSource source = new ConfigurationSource(new FileInputStream(log4jConfigFile));
+		Configurator.initialize(null, source);
+		logger = Logger.getLogger(getClass()); 
         final String os = System.getProperty("os.name");
         final String userDirectory = System.getProperty("user.dir");
         if (WindowBrowser.equalsIgnoreCase("firefox")) {

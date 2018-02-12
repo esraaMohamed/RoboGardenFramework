@@ -38,7 +38,8 @@ public class LoginPageObject extends BasePage{
 	}
 	
 	public LoginPageObject clickLogin() {
-		click(loginButton);
+		waitForVisibilityOf(loginButton);
+		clickByJavaExecutor(loginButton);
 		return this;
 	}
 	

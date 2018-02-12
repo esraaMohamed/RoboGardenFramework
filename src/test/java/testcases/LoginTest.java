@@ -13,49 +13,49 @@ import pageobjects.LoginPageObject;
  */
 public class LoginTest extends BaseTest {
 
-    LoginPageObject loginPage;
+	LoginPageObject loginPage;
 
-    LoginConfiguration loginConfiguration;
+	LoginConfiguration loginConfiguration;
 
-    HomePageObject homePage;
+	HomePageObject homePage;
 
-    String username, password, failedUsername, failedPassword;
+	String username, password, failedUsername, failedPassword;
 
-    @BeforeTest
-    public void init() {
-        loginPage = new LoginPageObject(driver);
-        homePage = new HomePageObject(driver);
-        loginConfiguration = new LoginConfiguration(loginPage, homePage);
-        username = jsonTestData.getData("Login").get("username");
-        password = jsonTestData.getData("Login").get("password");
-        failedUsername = jsonTestData.getData("invalidLogin").get("username");
-        failedPassword = jsonTestData.getData("invalidLogin").get("password");
-    }
+	@BeforeTest
+	public void init() {
+		loginPage = new LoginPageObject(driver);
+		homePage = new HomePageObject(driver);
+		loginConfiguration = new LoginConfiguration(loginPage, homePage);
+		username = jsonTestData.getData("Login").get("username");
+		password = jsonTestData.getData("Login").get("password");
+		failedUsername = jsonTestData.getData("invalidLogin").get("username");
+		failedPassword = jsonTestData.getData("invalidLogin").get("password");
+	}
 
-    /**
-     * Verifying invalid login functionality
-     */
-    @Test(priority = 1)
-    public void invalidLogin() {
-        loginConfiguration.invalidLogin(failedUsername, failedPassword);
-        Assert.assertEquals("Wrong Username or Password, Please try again!", loginConfiguration.getWrongUsernameAndPasswordText());
-    }
+	/**
+	 * Verifying invalid login functionality
+	 */
+	@Test(priority = 1)
+	public void invalidLogin() {
+		loginConfiguration.invalidLogin(failedUsername, failedPassword);
+		Assert.assertEquals("Wrong Username or Password, Please try again!", loginConfiguration.getWrongUsernameAndPasswordText());
+	}
 
-    /**
-     * Verifying valid login functionality
-     */
-    @Test(priority = 2)
-    public void validLogin() {
-        loginConfiguration.validLogin(username, password);
-        Assert.assertTrue(loginConfiguration.isUserLoggedIn(), "Login Failed");
-    }
+	/**
+	 * Verifying valid login functionality
+	 */
+	@Test(priority = 2)
+	public void validLogin() {
+		loginConfiguration.validLogin(username, password);
+		Assert.assertTrue(loginConfiguration.isUserLoggedIn(), "Login Failed");
+	}
 
-    /**
-     * Verifying logout functionality
-     */
-    @Test(priority = 3)
-    public void logout() {
-        loginConfiguration.logout();
-        Assert.assertTrue(driver.getCurrentUrl().contains("home"), "Logout Failed");
-    }
+	/**
+	 * Verifying logout functionality
+	 */
+	@Test(priority = 3)
+	public void logout() {
+		loginConfiguration.logout();
+		Assert.assertTrue(loginConfiguration.isLoginButtonDisplayed(), "Logout Failed");
+	}
 }
