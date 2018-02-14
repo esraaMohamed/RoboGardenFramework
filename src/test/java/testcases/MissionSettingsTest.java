@@ -57,7 +57,7 @@ public class MissionSettingsTest extends BaseTest{
 	 * Verifying mission description button is working properly
 	 */
 	@Test(priority = 1, enabled = true)
-	public void missionDescriptionConfiguration() throws InterruptedException {
+	public void missionDescriptionTest() throws InterruptedException {
 		roadMapPage = journeyConfiguration.clickPlayNowButtonByIndex(Integer.valueOf(journeyIndexNumber));
 		roadMapConfiguration.closeHint();
 		roadMapConfiguration.clickFirstMission();
@@ -69,7 +69,7 @@ public class MissionSettingsTest extends BaseTest{
 	 * Verifying load code button is working properly
 	 */
 	@Test(priority = 2, enabled = true)
-	public void loadCodeButton() {
+	public void loadCodeButtonTest() {
 		missionSettingsConfiguration.clickLoadCodeButton();
 		Assert.assertTrue(missionPage.isLoadCodePopupDisplayed());
 	}
@@ -78,7 +78,7 @@ public class MissionSettingsTest extends BaseTest{
 	 * Verifying save code button is working properly
 	 */
 	@Test(priority = 3, enabled = true)
-	public void saveCodeButton() {
+	public void saveCodeButtonTest() {
 		missionSettingsConfiguration.clickSaveCodeButton();
 		Assert.assertTrue(missionSettingsConfiguration.isSaveCodeErrorPopupDisplayed());
 	}
@@ -87,7 +87,7 @@ public class MissionSettingsTest extends BaseTest{
 	 * Verifying tour guide button is working properly
 	 */
 	@Test(priority = 4, enabled = true)
-	public void tourGuideButton() {
+	public void tourGuideButtonTest() {
 		missionSettingsConfiguration.clickTourGuideButton();
 		Assert.assertTrue(missionSettingsConfiguration.isTourGuideDisplayed());
 	}
@@ -96,7 +96,7 @@ public class MissionSettingsTest extends BaseTest{
 	 * Verifying model answer button is working properly
 	 */
 	@Test(priority = 5, enabled = true)
-	public void modelAnswerButton() throws InterruptedException {
+	public void modelAnswerButtonTest() throws InterruptedException {
 		missionSettingsConfiguration.clickModelAnswerButton();
 		Assert.assertTrue(missionSettingsConfiguration.isModelAnswerCodeBlockDisplayed());
 	}
@@ -105,7 +105,7 @@ public class MissionSettingsTest extends BaseTest{
 	 * Verifying reset button is working properly
 	 */
 	@Test(priority = 6, enabled = true)
-	public void resetButton() {
+	public void resetButtonTest() {
 		missionSettingsConfiguration.clickResetButton();
 		Assert.assertTrue(missionSettingsConfiguration.isModelAnswerCodeNotDisplayed());
 	}

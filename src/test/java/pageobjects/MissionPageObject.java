@@ -9,7 +9,10 @@ public class MissionPageObject extends BasePage {
 
 	@FindBy(css = ".close.ng-scope")
 	private WebElement missionTutorial;
-
+	
+	@FindBy(xpath = "/html/body/div[1]/div/div/div/div[3]/div/div[2]/button")
+	private WebElement gotItButton;
+	
 	@FindBy(css = ".close")
 	private WebElement dialogueCloseButton;
 
@@ -72,6 +75,15 @@ public class MissionPageObject extends BasePage {
 
 	@FindBy(css = "g[class='blocklyBlockCanvas']")
 	private WebElement parentElement;
+	
+	@FindBy(xpath = "/html/body/div[1]/div/div/div[1]/img")
+	private WebElement closeJavascriptPopup;
+	
+	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[3]/form/div/div[2]/div[4]/label/div/pre")
+	private WebElement textualFirstMissionAnswer;
+	
+	@FindBy(id = "check_answer_button")
+	private WebElement checkAnswerSubmitButton;
 
 	public MissionPageObject(WebDriver driver) {
 		super(driver);
@@ -197,5 +209,24 @@ public class MissionPageObject extends BasePage {
 			return true;
 		}
 		return false;
+	}
+	
+	public void clickCloseJavascriptPopup() {
+		clickByJavaExecutor(closeJavascriptPopup);
+	}
+	
+	public MissionPageObject clickTextualMissionAnswer() {
+		clickByJavaExecutor(textualFirstMissionAnswer);
+		return this;
+	}
+	
+	public MissionPageObject clickCheckAnswerButton() {
+		clickByJavaExecutor(checkAnswerButton);
+		return this;
+	}
+	
+	public MissionPageObject clickGotItButton() {
+		clickByJavaExecutor(gotItButton);
+		return this;
 	}
 }

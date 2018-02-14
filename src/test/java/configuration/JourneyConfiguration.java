@@ -21,4 +21,8 @@ public class JourneyConfiguration {
         journeyCount = journeyPage.getJourneyCount();
         return journeyCount;
     }
+    
+    public void clickTextualJourneysLink() {
+    		journeyPage.clickTextualJourneyLink();
+    }
 }
