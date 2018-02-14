@@ -32,7 +32,7 @@ public class McqMissionTest extends BaseTest{
 	
 	MissionConfiguration missionConfiguration;
 	
-	String username, password, journeyIndexNumber;
+	String username, password, journeyIndexNumber, missionIndexNumber, answerIndexNumber;
 	
 	@BeforeTest
 	public void init() {
@@ -49,6 +49,8 @@ public class McqMissionTest extends BaseTest{
 		password = jsonTestData.getData("Login").get("password");
 		journeyPage = loginConfiguration.validLogin(username, password);
 		journeyIndexNumber = jsonTestData.getData("Journey").get("journeyIndexNumber");
+		missionIndexNumber = jsonTestData.getData("MissionTextual").get("missionIndexNumber");
+		answerIndexNumber = jsonTestData.getData("MissionTextual").get("answerIndexNumber");
 	}
 	
 	@Test
@@ -56,10 +58,11 @@ public class McqMissionTest extends BaseTest{
 		journeyConfiguration.clickTextualJourneysLink();
 		roadMapPage = journeyConfiguration.clickPlayNowButtonByIndex(Integer.valueOf(journeyIndexNumber));
 		roadMapConfiguration.closeHint();
-		roadMapConfiguration.clickFirstMission();
+		roadMapConfiguration.clickMission(Integer.valueOf(missionIndexNumber));
 		missionConfiguration.generateModelAnswer();
+        if (Integer.valueOf(missionIndexNumber) == 0)
 		missionConfiguration.closeJavascriptPopup();
-		missionConfiguration.selectAndSubmitJavascriptAnswer();
+		missionConfiguration.selectAndSubmitJavascriptAnswer(Integer.valueOf(answerIndexNumber));
 	}
 
 }

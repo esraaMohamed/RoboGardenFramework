@@ -58,8 +58,8 @@ public class MissionConfiguration {
 		missionPage.clickCloseJavascriptPopup();
 	}
 	
-	public void selectAndSubmitJavascriptAnswer() {
-		missionPage.clickTextualMissionAnswer()
+	public void selectAndSubmitJavascriptAnswer(int index) throws InterruptedException {
+		missionPage.clickTextualMissionAnswer(index)
 		.clickCheckAnswerButton();
 	}
 }

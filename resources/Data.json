@@ -9,5 +9,9 @@
 	},
 	"Journey": {
 		"journeyIndexNumber": "0"
+	},
+	"MissionTextual": {
+		"missionIndexNumber": "1",
+		"answerIndexNumber": "0"
 	}
 }

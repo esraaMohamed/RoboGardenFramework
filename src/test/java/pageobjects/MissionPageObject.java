@@ -1,5 +1,7 @@
 package pageobjects;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -79,8 +81,8 @@ public class MissionPageObject extends BasePage {
 	@FindBy(xpath = "/html/body/div[1]/div/div/div[1]/img")
 	private WebElement closeJavascriptPopup;
 	
-	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[3]/form/div/div[2]/div[4]/label/div/pre")
-	private WebElement textualFirstMissionAnswer;
+	@FindBy(css = "div[class='col-sm-12 code_editor_component ng-scope']")
+	private List<WebElement> textualMissionAnswer;
 	
 	@FindBy(id = "check_answer_button")
 	private WebElement checkAnswerSubmitButton;
@@ -212,11 +214,14 @@ public class MissionPageObject extends BasePage {
 	}
 	
 	public void clickCloseJavascriptPopup() {
+	    waitForVisibilityOf(closeJavascriptPopup);
 		clickByJavaExecutor(closeJavascriptPopup);
 	}
 	
-	public MissionPageObject clickTextualMissionAnswer() {
-		clickByJavaExecutor(textualFirstMissionAnswer);
+	public MissionPageObject clickTextualMissionAnswer(int index) throws InterruptedException {
+	    waitForVisibilityOf(textualMissionAnswer.get(index));
+	    Thread.sleep(1000);
+		click(textualMissionAnswer.get(index));
 		return this;
 	}
 	

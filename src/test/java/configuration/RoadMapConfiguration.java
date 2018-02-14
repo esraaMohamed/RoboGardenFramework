@@ -71,8 +71,8 @@ public class RoadMapConfiguration {
 		roadMapPage.clickJourneyButton();
 	}
 
-	public void clickFirstMission() {
-		roadMapPage.clickSlickDotByIndex(0)
-		.clickMissionByIndex(0);
-	}
+    public void clickMission(int missionIndex) {
+        roadMapPage.clickSlickDotByIndex(missionIndex / 5)
+        .clickMissionByIndex(missionIndex);
+    }
 }
