@@ -63,7 +63,7 @@ public class MissionSettingsConfiguration {
 		return missionPage.isCodeBlockNotDisplayed();
 	}
 	
-	public void clickDecorCheckbox() {
+	public void clickDecorCheckbox() throws InterruptedException {
 		missionPage.clickWorkspaceSettingsButton()
 		.clickDecorCheckbox();
 	}
@@ -94,5 +94,13 @@ public class MissionSettingsConfiguration {
 	
 	public boolean isToggleSoundCheckboxUnchecked() {
 		return missionPage.checkIfToggleSoundCheckboxIsUnchecked();
+	}
+	
+	public void moveOpacitySlider() {
+		missionPage.increaseOpacity();
+	}
+	
+	public boolean checkIfOpacityChanged() {
+		return missionPage.checkIfOpacityValueChanged();
 	}
 }

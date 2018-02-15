@@ -11,7 +11,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BasePage {
 
 	protected WebDriver driver;
-	
+
 	public int time = 150;
 
 	Actions action;
@@ -49,19 +49,24 @@ public class BasePage {
 	public void waitForVisibilityOf(final WebElement element) {
 		wait.until(ExpectedConditions.visibilityOf(element));
 	}
-	
+
 	public void clickByAction(WebElement element){
-	    action.moveToElement(element).click().perform();
+		action.moveToElement(element).click().perform();
 	}
-	
+
 	public void clickByJavaExecutor(WebElement element){
-	    JavascriptExecutor jse = (JavascriptExecutor)driver;
-        jse.executeScript("arguments[0].click();", element);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].click();", element);
 	}
-	
+
+	public void setValueByJavaExecutor(WebElement element, String value) {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("$(arguments[0]).val("+value+").change()", element);
+	}
+
 	public void scrollIntoView(WebElement element){
-	    JavascriptExecutor jse = (JavascriptExecutor)driver;
-	    jse.executeScript("arguments[0].scrollIntoView(true);", element);
+		JavascriptExecutor jse = (JavascriptExecutor)driver;
+		jse.executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 
 }

@@ -8,7 +8,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class MissionPageObject extends BasePage {
-
+	
+	String opacityValueBefore;
+	
 	@FindBy(css = ".close.ng-scope")
 	private WebElement missionTutorial;
 	
@@ -87,7 +89,7 @@ public class MissionPageObject extends BasePage {
 	@FindBy(id = "check_answer_button")
 	private WebElement checkAnswerSubmitButton;
 	
-	@FindBy(id = "settings")
+	@FindBy(css = ".fa-cog")
 	private WebElement workspaceSettings;
 	
 	@FindBy(xpath ="/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[1]/div[1]/label/input")
@@ -104,6 +106,9 @@ public class MissionPageObject extends BasePage {
 	
 	@FindBy(css = "i.pull-left")
 	private WebElement myCode;
+	
+	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[1]/div[2]/label/input")
+	private WebElement opacitySlider;
 
 	public MissionPageObject(WebDriver driver) {
 		super(driver);
@@ -240,7 +245,6 @@ public class MissionPageObject extends BasePage {
 	
 	public MissionPageObject clickTextualMissionAnswer(int index) throws InterruptedException {
 	    waitForVisibilityOf(textualMissionAnswer.get(index));
-	    Thread.sleep(1000);
 		click(textualMissionAnswer.get(index));
 		return this;
 	}
@@ -255,8 +259,10 @@ public class MissionPageObject extends BasePage {
 		return this;
 	}
 	
-	public MissionPageObject clickWorkspaceSettingsButton() {
+	public MissionPageObject clickWorkspaceSettingsButton() throws InterruptedException {
 		clickByJavaExecutor(workspaceSettings);
+		Thread.sleep(500);
+		hover(workspaceSettings);
 		return this;
 	}
 	
@@ -303,6 +309,19 @@ public class MissionPageObject extends BasePage {
 	
 	public boolean checkIfToggleSoundCheckboxIsUnchecked() {
 		if(!(toggleSoundCheckbox.getAttribute("class").contains("ng-not-empty"))) {
+			return true;
+		}
+		return false;
+	}
+	
+	public MissionPageObject increaseOpacity() {
+		waitForVisibilityOf(opacitySlider);
+		setValueByJavaExecutor(opacitySlider, "50");
+		return this;
+	}
+	
+	public boolean checkIfOpacityValueChanged() {
+		if(Integer.parseInt(opacitySlider.getAttribute("aria-valuenow").toString())>20) {
 			return true;
 		}
 		return false;

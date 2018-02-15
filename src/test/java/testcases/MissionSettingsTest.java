@@ -31,11 +31,11 @@ public class MissionSettingsTest extends BaseTest{
 	JourneyConfiguration journeyConfiguration;
 
 	RoadMapConfiguration roadMapConfiguration;
-	
+
 	MissionSettingsConfiguration missionSettingsConfiguration;
-	
+
 	String username, password, journeyIndexNumber, missionIndexNumber;
-	
+
 	@BeforeTest
 	public void init() {
 		loginPage = new LoginPageObject(driver);
@@ -53,7 +53,7 @@ public class MissionSettingsTest extends BaseTest{
 		journeyIndexNumber = jsonTestData.getData("Journey").get("journeyIndexNumber");
 		missionIndexNumber = jsonTestData.getData("MissionTextual").get("missionIndexNumber");
 	}
-	
+
 	/**
 	 * Verifying mission description button is working properly
 	 */
@@ -65,7 +65,7 @@ public class MissionSettingsTest extends BaseTest{
 		missionSettingsConfiguration.clickMissionDescription();
 		Assert.assertTrue(missionSettingsConfiguration.isMissionDescriptionPopupDisplayed());
 	}
-	
+
 	/**
 	 * Verifying load code button is working properly
 	 */
@@ -74,7 +74,7 @@ public class MissionSettingsTest extends BaseTest{
 		missionSettingsConfiguration.clickLoadCodeButton();
 		Assert.assertTrue(missionPage.isLoadCodePopupDisplayed());
 	}
-	
+
 	/**
 	 * Verifying save code button is working properly
 	 */
@@ -83,7 +83,7 @@ public class MissionSettingsTest extends BaseTest{
 		missionSettingsConfiguration.clickSaveCodeButton();
 		Assert.assertTrue(missionSettingsConfiguration.isSaveCodeErrorPopupDisplayed());
 	}
-	
+
 	/**
 	 * Verifying tour guide button is working properly
 	 */
@@ -92,7 +92,7 @@ public class MissionSettingsTest extends BaseTest{
 		missionSettingsConfiguration.clickTourGuideButton();
 		Assert.assertTrue(missionSettingsConfiguration.isTourGuideDisplayed());
 	}
-	
+
 	/**
 	 * Verifying model answer button is working properly
 	 */
@@ -101,7 +101,7 @@ public class MissionSettingsTest extends BaseTest{
 		missionSettingsConfiguration.clickModelAnswerButton();
 		Assert.assertTrue(missionSettingsConfiguration.isModelAnswerCodeBlockDisplayed());
 	}
-	
+
 	/**
 	 * Verifying reset button is working properly
 	 */
@@ -110,16 +110,17 @@ public class MissionSettingsTest extends BaseTest{
 		missionSettingsConfiguration.clickResetButton();
 		Assert.assertTrue(missionSettingsConfiguration.isModelAnswerCodeNotDisplayed());
 	}
-	
+
 	/**
 	 * Verifying decor checkbox is working properly
+	 * @throws InterruptedException 
 	 */
 	@Test(priority = 7, enabled = true)
-	public void decorCheckboxTest() {
+	public void decorCheckboxTest() throws InterruptedException {
 		missionSettingsConfiguration.clickDecorCheckbox();
 		Assert.assertTrue(missionSettingsConfiguration.isDecorCheckboxChecked());
 	}
-	
+
 	/**
 	 * Verifying dots checkbox is working properly
 	 */
@@ -128,22 +129,31 @@ public class MissionSettingsTest extends BaseTest{
 		missionSettingsConfiguration.clickDotsCheckbox();
 		Assert.assertTrue(missionSettingsConfiguration.isDotsCheckboxChecked());
 	}
-	
+
 	/**
 	 * Verifying keep code checkbox is working properly
 	 */
 	@Test(priority = 9, enabled = true)
-	public void keepCodeCheckboxTest() throws InterruptedException {
+	public void keepCodeCheckboxTest() {
 		missionSettingsConfiguration.clickKeepCodeCheckbox();
 		Assert.assertTrue(missionSettingsConfiguration.isKeepCodeCheckboxChecked());
 	}
-	
+
 	/**
 	 * Verifying toggle sound checkbox is working properly
 	 */
 	@Test(priority = 10, enabled = true)
-	public void toogleSoundCheckboxTest() throws InterruptedException {
+	public void toogleSoundCheckboxTest() {
 		missionSettingsConfiguration.clickToggleSoundCheckbox();
 		Assert.assertTrue(missionSettingsConfiguration.isToggleSoundCheckboxUnchecked());
+	}
+
+	/**
+	 * Verifying opacity slider is working properly
+	 */
+	@Test(priority = 11, enabled = true)
+	public void opacitySliderTest() {
+		missionSettingsConfiguration.moveOpacitySlider();
+		Assert.assertTrue(missionSettingsConfiguration.checkIfOpacityChanged());
 	}
 }
