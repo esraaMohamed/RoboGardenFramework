@@ -61,7 +61,7 @@ public class MissionSettingsTest extends BaseTest{
 	public void missionDescriptionTest() throws InterruptedException {
 		roadMapPage = journeyConfiguration.clickPlayNowButtonByIndex(Integer.valueOf(journeyIndexNumber));
 		roadMapConfiguration.closeHint();
-		roadMapConfiguration.clickFirstMission();
+		roadMapConfiguration.clickMission(Integer.valueOf(missionIndexNumber));
 		missionSettingsConfiguration.clickMissionDescription();
 		Assert.assertTrue(missionSettingsConfiguration.isMissionDescriptionPopupDisplayed());
 	}
