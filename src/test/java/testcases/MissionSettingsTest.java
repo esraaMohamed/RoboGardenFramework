@@ -34,7 +34,7 @@ public class MissionSettingsTest extends BaseTest{
 	
 	MissionSettingsConfiguration missionSettingsConfiguration;
 	
-	String username, password, journeyIndexNumber;
+	String username, password, journeyIndexNumber, missionIndexNumber;
 	
 	@BeforeTest
 	public void init() {
@@ -51,6 +51,7 @@ public class MissionSettingsTest extends BaseTest{
 		password = jsonTestData.getData("Login").get("password");
 		journeyPage = loginConfiguration.validLogin(username, password);
 		journeyIndexNumber = jsonTestData.getData("Journey").get("journeyIndexNumber");
+		missionIndexNumber = jsonTestData.getData("MissionTextual").get("missionIndexNumber");
 	}
 	
 	/**
@@ -108,5 +109,41 @@ public class MissionSettingsTest extends BaseTest{
 	public void resetButtonTest() {
 		missionSettingsConfiguration.clickResetButton();
 		Assert.assertTrue(missionSettingsConfiguration.isModelAnswerCodeNotDisplayed());
+	}
+	
+	/**
+	 * Verifying decor checkbox is working properly
+	 */
+	@Test(priority = 7, enabled = true)
+	public void decorCheckboxTest() {
+		missionSettingsConfiguration.clickDecorCheckbox();
+		Assert.assertTrue(missionSettingsConfiguration.isDecorCheckboxChecked());
+	}
+	
+	/**
+	 * Verifying dots checkbox is working properly
+	 */
+	@Test(priority = 8, enabled = true)
+	public void dotsCheckboxTest() {
+		missionSettingsConfiguration.clickDotsCheckbox();
+		Assert.assertTrue(missionSettingsConfiguration.isDotsCheckboxChecked());
+	}
+	
+	/**
+	 * Verifying keep code checkbox is working properly
+	 */
+	@Test(priority = 9, enabled = true)
+	public void keepCodeCheckboxTest() throws InterruptedException {
+		missionSettingsConfiguration.clickKeepCodeCheckbox();
+		Assert.assertTrue(missionSettingsConfiguration.isKeepCodeCheckboxChecked());
+	}
+	
+	/**
+	 * Verifying toggle sound checkbox is working properly
+	 */
+	@Test(priority = 10, enabled = true)
+	public void toogleSoundCheckboxTest() throws InterruptedException {
+		missionSettingsConfiguration.clickToggleSoundCheckbox();
+		Assert.assertTrue(missionSettingsConfiguration.isToggleSoundCheckboxUnchecked());
 	}
 }

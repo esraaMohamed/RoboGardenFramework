@@ -86,6 +86,24 @@ public class MissionPageObject extends BasePage {
 	
 	@FindBy(id = "check_answer_button")
 	private WebElement checkAnswerSubmitButton;
+	
+	@FindBy(id = "settings")
+	private WebElement workspaceSettings;
+	
+	@FindBy(xpath ="/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[1]/div[1]/label/input")
+	private WebElement decorCheckbox;
+	
+	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[2]/div/label/input")
+	private WebElement dotsCheckbox;
+	
+	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[3]/div/label/input")
+	private WebElement keepCodeCheckbox;
+	
+	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[4]/div/label/input")
+	private WebElement toggleSoundCheckbox;
+	
+	@FindBy(css = "i.pull-left")
+	private WebElement myCode;
 
 	public MissionPageObject(WebDriver driver) {
 		super(driver);
@@ -192,12 +210,14 @@ public class MissionPageObject extends BasePage {
 	public MissionPageObject clickCloseTourGuideButton(){
 		waitForVisibilityOf(closeTourGuidePopupButton);
 		click(closeTourGuidePopupButton);
-		driver.navigate().refresh();
+		click(myCode);
+		click(actions);
 		return this;
 	}
 
 	public MissionPageObject clickResetButton() {
 		click(resetButton);
+		click(actions);
 		return this;
 	}
 
@@ -233,5 +253,58 @@ public class MissionPageObject extends BasePage {
 	public MissionPageObject clickGotItButton() {
 		clickByJavaExecutor(gotItButton);
 		return this;
+	}
+	
+	public MissionPageObject clickWorkspaceSettingsButton() {
+		clickByJavaExecutor(workspaceSettings);
+		return this;
+	}
+	
+	public MissionPageObject clickDecorCheckbox() {
+		clickByJavaExecutor(decorCheckbox);
+		return this;
+	}
+	
+	public boolean checkIfDecorCheckboxIsChecked() {
+		if(decorCheckbox.getAttribute("class").contains("ng-not-empty")) {
+			return true;
+		}
+		return false;
+	}
+	
+	public MissionPageObject clickDotsCheckbox() {
+		clickByJavaExecutor(dotsCheckbox);
+		return this;
+	}
+	
+	public boolean checkIfDotsCheckboxIsChecked() {
+		if(dotsCheckbox.getAttribute("class").contains("ng-not-empty")) {
+			return true;
+		}
+		return false;
+	}
+	
+	public MissionPageObject clickKeepCodeCheckbox() {
+		clickByJavaExecutor(keepCodeCheckbox);
+		return this;
+	}
+	
+	public boolean checkIfKeepCodeCheckboxIsChecked() {
+		if(keepCodeCheckbox.getAttribute("class").contains("ng-not-empty")) {
+			return true;
+		}
+		return false;
+	}
+	
+	public MissionPageObject clickToggleSoundCheckbox() {
+		clickByJavaExecutor(toggleSoundCheckbox);
+		return this;
+	}
+	
+	public boolean checkIfToggleSoundCheckboxIsUnchecked() {
+		if(!(toggleSoundCheckbox.getAttribute("class").contains("ng-not-empty"))) {
+			return true;
+		}
+		return false;
 	}
 }

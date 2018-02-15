@@ -48,8 +48,6 @@ public class MissionSettingsConfiguration {
 	
 	public void clickModelAnswerButton() throws InterruptedException {
 		missionPage.clickCloseTourGuideButton()
-		.closeMissionHint()
-		.clickSettingButton()
 		.clickModelAnswerButton();
 	}
 	
@@ -63,5 +61,38 @@ public class MissionSettingsConfiguration {
 	
 	public boolean isModelAnswerCodeNotDisplayed() {
 		return missionPage.isCodeBlockNotDisplayed();
+	}
+	
+	public void clickDecorCheckbox() {
+		missionPage.clickWorkspaceSettingsButton()
+		.clickDecorCheckbox();
+	}
+	
+	public boolean isDecorCheckboxChecked() {
+		return missionPage.checkIfDecorCheckboxIsChecked();
+	}
+	
+	public void clickDotsCheckbox() {
+		missionPage.clickDotsCheckbox();
+	}
+	
+	public boolean isDotsCheckboxChecked() {
+		return missionPage.checkIfDotsCheckboxIsChecked();
+	}
+	
+	public void clickKeepCodeCheckbox() {
+		missionPage.clickKeepCodeCheckbox();
+	}
+	
+	public boolean isKeepCodeCheckboxChecked() {
+		return missionPage.checkIfKeepCodeCheckboxIsChecked();
+	}
+	
+	public void clickToggleSoundCheckbox() {
+		missionPage.clickToggleSoundCheckbox();
+	}
+	
+	public boolean isToggleSoundCheckboxUnchecked() {
+		return missionPage.checkIfToggleSoundCheckboxIsUnchecked();
 	}
 }
