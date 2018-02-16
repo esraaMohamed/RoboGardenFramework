@@ -38,10 +38,10 @@ public class MissionPageObject extends BasePage {
 	@FindBy(css = ".btn.btn-garden.ml-50")
 	private WebElement roadmapButton;
 
-	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[1]/div[2]/div[2]/div[6]/a/span")
+	@FindBy(id = "mission_description")
 	private WebElement missionDescription;
 
-	@FindBy(xpath = "/html/body/div[1]")
+	@FindBy(id = "mission_popup")
 	private WebElement missionDescriptionPopup;
 
 	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[1]/div[2]/div[2]/div[5]/a/span")
@@ -110,6 +110,18 @@ public class MissionPageObject extends BasePage {
 	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[1]/div[1]/div[2]/div[1]/div[2]/label/input")
 	private WebElement opacitySlider;
 
+    @FindBy(css = "g.blocklyZoom > image:nth-child(4)")
+    private WebElement zoomIn;
+
+    @FindBy(css = "g.blocklyZoom > image:nth-child(2)")
+    private WebElement zoomOut;
+
+    @FindBy(css = "g.blocklyZoom > image:nth-child(6)")
+    private WebElement resetZoom;
+    
+    @FindBy(css = "g.blocklyTrash > image:nth-child(2)")
+    private WebElement trash;
+
 	public MissionPageObject(WebDriver driver) {
 		super(driver);
 	}
@@ -164,7 +176,8 @@ public class MissionPageObject extends BasePage {
 	}
 
 	public MissionPageObject clickOnMissionDescription() {
-		clickByJavaExecutor(missionDescription);
+	    waitForVisibilityOf(missionDescription);
+		click(missionDescription);
 		return this;
 	}
 
@@ -212,17 +225,16 @@ public class MissionPageObject extends BasePage {
 		return tourGuidePopup.isDisplayed();
 	}
 
-	public MissionPageObject clickCloseTourGuideButton(){
+	public MissionPageObject clickCloseTourGuideButton() throws InterruptedException{
 		waitForVisibilityOf(closeTourGuidePopupButton);
 		click(closeTourGuidePopupButton);
 		click(myCode);
-		click(actions);
+		clickSettingButton();
 		return this;
 	}
 
 	public MissionPageObject clickResetButton() {
 		click(resetButton);
-		click(actions);
 		return this;
 	}
 
@@ -231,12 +243,15 @@ public class MissionPageObject extends BasePage {
 		return answerBlock.isDisplayed();
 	}
 
-	public boolean isCodeBlockNotDisplayed() {
-		if(parentElement.findElements(By.tagName("g")).size()==0) {
-			return true;
-		}
-		return false;
-	}
+    public boolean isCodeBlockNotDisplayed() {
+        try {
+            answerBlock.isDisplayed();
+            return false;
+        } catch (Exception e) {
+            return true;
+        }
+
+    }
 	
 	public void clickCloseJavascriptPopup() {
 	    waitForVisibilityOf(closeJavascriptPopup);
@@ -261,12 +276,12 @@ public class MissionPageObject extends BasePage {
 	
 	public MissionPageObject clickWorkspaceSettingsButton() throws InterruptedException {
 		clickByJavaExecutor(workspaceSettings);
-		Thread.sleep(500);
 		hover(workspaceSettings);
 		return this;
 	}
 	
 	public MissionPageObject clickDecorCheckbox() {
+	    waitForVisibilityOf(decorCheckbox);
 		clickByJavaExecutor(decorCheckbox);
 		return this;
 	}
@@ -326,4 +341,27 @@ public class MissionPageObject extends BasePage {
 		}
 		return false;
 	}
+	
+    public MissionPageObject clickZoomIn() {
+        click(zoomIn);
+        click(zoomIn);
+        return this;
+    }
+    public MissionPageObject clickZoomOut() {
+        click(zoomOut);
+        return this;
+    }
+    public MissionPageObject clickZoomReset() {
+        click(resetZoom);
+        return this;
+    }
+
+    public String getBlockLocation() {
+        return parentElement.getLocation().toString();
+    }
+    
+    public MissionPageObject removeCode (){
+        dragAndDropByElement(parentElement, trash);
+        return this;
+    }
 }

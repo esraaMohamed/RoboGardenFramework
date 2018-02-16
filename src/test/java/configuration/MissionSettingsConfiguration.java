@@ -4,103 +4,121 @@ import pageobjects.MissionPageObject;
 
 public class MissionSettingsConfiguration {
 	MissionPageObject missionPage;
+	String beforeZoom , afterZoom;
 	
 	public MissionSettingsConfiguration(MissionPageObject missionPage) {
 		this.missionPage = missionPage;
 	}
 
-	public void clickMissionDescription() throws InterruptedException {
-		missionPage.closeMissionHint()
-		.clickSettingButton()
-		.clickOnMissionDescription();
+    public boolean clickMissionDescription() throws InterruptedException {
+        boolean isMissionDescriptionPopupDisplayed = missionPage.closeMissionHint()
+                .clickSettingButton()
+                .clickOnMissionDescription()
+                .isMissionDescriptionPopupDisplayed();
+        missionPage.closeMissionHint();
+        return isMissionDescriptionPopupDisplayed;
+    }
+	
+    public boolean clickLoadCodeButton() {
+        boolean isLoadCodePopupDisplayed = missionPage.clickLoadCodeButton()
+                .isLoadCodePopupDisplayed();
+        missionPage.closeLoadCodePopup();
+        return isLoadCodePopupDisplayed;
+    }
+	
+	public boolean clickSaveCodeButton() {
+		boolean isSaveCodeErrorPopupDisplayed = missionPage.clickSaveCodeButton()
+		        .isSaveCodeErrorPopupDisplayed();
+		missionPage.closeSaveCodeErrorPopup();
+		return isSaveCodeErrorPopupDisplayed;
+	}
+		
+	public boolean clickTourGuideButton() throws InterruptedException {
+		boolean isTourGuideDisplayed = missionPage.clickOnShowTourGuideButton()
+		        .isTourGuideDisplayed();
+		missionPage.clickCloseTourGuideButton();
+		return isTourGuideDisplayed;
+		
 	}
 	
-	public boolean isMissionDescriptionPopupDisplayed() {
-		return missionPage.isMissionDescriptionPopupDisplayed();
+	public boolean clickModelAnswerButton() throws InterruptedException {
+		boolean isCodeBlockDisplayed = missionPage.clickModelAnswerButton()
+		        .isCodeBlockDisplayed();
+		return isCodeBlockDisplayed;
 	}
 	
-	public void clickLoadCodeButton() {
-		missionPage.closeMissionHint()
-		.clickLoadCodeButton();
+	
+	public boolean clickResetButton() throws InterruptedException {
+		boolean isCodeBlockNotDisplayed = missionPage.clickModelAnswerButton()
+		        .clickResetButton()
+		        .isCodeBlockNotDisplayed();
+		return isCodeBlockNotDisplayed;
 	}
 	
-	public boolean isLoadCodePopupDisplayed() {
-		return missionPage.isLoadCodePopupDisplayed();
+	
+	public boolean clickDecorCheckbox() throws InterruptedException {
+		boolean checkIfDecorCheckboxIsChecked = missionPage.clickWorkspaceSettingsButton()
+		.clickDecorCheckbox()
+		.checkIfDecorCheckboxIsChecked();
+		return checkIfDecorCheckboxIsChecked;
 	}
 	
-	public void clickSaveCodeButton() {
-		missionPage.closeLoadCodePopup()
-		.clickSaveCodeButton();
+	public boolean clickDotsCheckbox() {
+		boolean checkIfDotsCheckboxIsChecked = missionPage.clickDotsCheckbox()
+		        .checkIfDotsCheckboxIsChecked();
+		return checkIfDotsCheckboxIsChecked;
 	}
 	
-	public boolean isSaveCodeErrorPopupDisplayed() {
-		return missionPage.isSaveCodeErrorPopupDisplayed();
+	public boolean clickKeepCodeCheckbox() {
+		boolean checkIfKeepCodeCheckboxIsChecked = missionPage.clickKeepCodeCheckbox()
+		        .checkIfKeepCodeCheckboxIsChecked();
+		return checkIfKeepCodeCheckboxIsChecked;
 	}
 	
-	public void clickTourGuideButton() {
-		missionPage.closeSaveCodeErrorPopup()
-		.clickOnShowTourGuideButton();
+	public boolean clickToggleSoundCheckbox() {
+		boolean checkIfToggleSoundCheckboxIsUnchecked = missionPage.clickToggleSoundCheckbox()
+		        .checkIfToggleSoundCheckboxIsUnchecked();
+		return checkIfToggleSoundCheckboxIsUnchecked;
 	}
 	
-	public boolean isTourGuideDisplayed() {
-		return missionPage.isTourGuideDisplayed();
+	public boolean moveOpacitySlider() {
+		boolean checkIfOpacityValueChanged = missionPage.increaseOpacity()
+		        .checkIfOpacityValueChanged();
+		return checkIfOpacityValueChanged;
 	}
 	
-	public void clickModelAnswerButton() throws InterruptedException {
-		missionPage.clickCloseTourGuideButton()
-		.clickModelAnswerButton();
-	}
-	
-	public boolean isModelAnswerCodeBlockDisplayed() {
-		return missionPage.isCodeBlockDisplayed();
-	}
-	
-	public void clickResetButton() {
-		missionPage.clickResetButton();
-	}
-	
-	public boolean isModelAnswerCodeNotDisplayed() {
-		return missionPage.isCodeBlockNotDisplayed();
-	}
-	
-	public void clickDecorCheckbox() throws InterruptedException {
-		missionPage.clickWorkspaceSettingsButton()
-		.clickDecorCheckbox();
-	}
-	
-	public boolean isDecorCheckboxChecked() {
-		return missionPage.checkIfDecorCheckboxIsChecked();
-	}
-	
-	public void clickDotsCheckbox() {
-		missionPage.clickDotsCheckbox();
-	}
-	
-	public boolean isDotsCheckboxChecked() {
-		return missionPage.checkIfDotsCheckboxIsChecked();
-	}
-	
-	public void clickKeepCodeCheckbox() {
-		missionPage.clickKeepCodeCheckbox();
-	}
-	
-	public boolean isKeepCodeCheckboxChecked() {
-		return missionPage.checkIfKeepCodeCheckboxIsChecked();
-	}
-	
-	public void clickToggleSoundCheckbox() {
-		missionPage.clickToggleSoundCheckbox();
-	}
-	
-	public boolean isToggleSoundCheckboxUnchecked() {
-		return missionPage.checkIfToggleSoundCheckboxIsUnchecked();
-	}
-	
-	public void moveOpacitySlider() {
-		missionPage.increaseOpacity();
-	}
-	
-	public boolean checkIfOpacityChanged() {
-		return missionPage.checkIfOpacityValueChanged();
-	}
+    public boolean clickZoomIn() throws InterruptedException {
+        missionPage.clickZoomReset();
+        beforeZoom = missionPage.getBlockLocation();
+        missionPage.clickZoomIn();
+        afterZoom = missionPage.getBlockLocation();
+        if (beforeZoom != afterZoom)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean clickZoomOut() throws InterruptedException {
+        beforeZoom = missionPage.getBlockLocation();
+        missionPage.clickZoomOut();
+        afterZoom = missionPage.getBlockLocation();
+        if (beforeZoom != afterZoom)
+            return true;
+        else
+            return false;
+    }
+
+    public boolean clickZoomReset() throws InterruptedException {
+        beforeZoom = missionPage.getBlockLocation();
+        missionPage.clickZoomReset();
+        afterZoom = missionPage.getBlockLocation();
+        if (beforeZoom != afterZoom)
+            return true;
+        else
+            return false;
+    }
+    public boolean removeCode() throws InterruptedException{
+        return missionPage.removeCode().isCodeBlockNotDisplayed();
+        
+    }
 }

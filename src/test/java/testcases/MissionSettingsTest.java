@@ -1,5 +1,7 @@
 package testcases;
 
+import static org.testng.Assert.assertTrue;
+
 import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -57,40 +59,41 @@ public class MissionSettingsTest extends BaseTest{
 	/**
 	 * Verifying mission description button is working properly
 	 */
-	@Test(priority = 1, enabled = true)
-	public void missionDescriptionTest() throws InterruptedException {
-		roadMapPage = journeyConfiguration.clickPlayNowButtonByIndex(Integer.valueOf(journeyIndexNumber));
-		roadMapConfiguration.closeHint();
-		roadMapConfiguration.clickMission(Integer.valueOf(missionIndexNumber));
-		missionSettingsConfiguration.clickMissionDescription();
-		Assert.assertTrue(missionSettingsConfiguration.isMissionDescriptionPopupDisplayed());
-	}
+    @Test(priority = 1, enabled = true)
+    public void missionDescriptionTest() throws InterruptedException {
+        roadMapPage = journeyConfiguration.clickPlayNowButtonByIndex(Integer.valueOf(journeyIndexNumber));
+        roadMapConfiguration.closeHint();
+        roadMapConfiguration.clickMission(Integer.valueOf(missionIndexNumber));
+        boolean isMissionDescriptionPopupDisplayed = missionSettingsConfiguration.clickMissionDescription();
+        Assert.assertTrue(isMissionDescriptionPopupDisplayed);
+    }
 
-	/**
+    /**
 	 * Verifying load code button is working properly
 	 */
-	@Test(priority = 2, enabled = true)
-	public void loadCodeButtonTest() {
-		missionSettingsConfiguration.clickLoadCodeButton();
-		Assert.assertTrue(missionPage.isLoadCodePopupDisplayed());
-	}
+    @Test(priority = 2, enabled = true)
+    public void loadCodeButtonTest() {
+        boolean isLoadCodePopupDisplayed = missionSettingsConfiguration.clickLoadCodeButton();
+        Assert.assertTrue(isLoadCodePopupDisplayed);
+    }
 
 	/**
 	 * Verifying save code button is working properly
 	 */
 	@Test(priority = 3, enabled = true)
 	public void saveCodeButtonTest() {
-		missionSettingsConfiguration.clickSaveCodeButton();
-		Assert.assertTrue(missionSettingsConfiguration.isSaveCodeErrorPopupDisplayed());
+		boolean isSaveCodeErrorPopupDisplayed =  missionSettingsConfiguration.clickSaveCodeButton();
+		Assert.assertTrue(isSaveCodeErrorPopupDisplayed);
 	}
 
 	/**
 	 * Verifying tour guide button is working properly
+	 * @throws InterruptedException 
 	 */
 	@Test(priority = 4, enabled = true)
-	public void tourGuideButtonTest() {
-		missionSettingsConfiguration.clickTourGuideButton();
-		Assert.assertTrue(missionSettingsConfiguration.isTourGuideDisplayed());
+	public void tourGuideButtonTest() throws InterruptedException {
+		boolean isTourGuideDisplayed = missionSettingsConfiguration.clickTourGuideButton();
+		Assert.assertTrue(isTourGuideDisplayed);
 	}
 
 	/**
@@ -98,62 +101,95 @@ public class MissionSettingsTest extends BaseTest{
 	 */
 	@Test(priority = 5, enabled = true)
 	public void modelAnswerButtonTest() throws InterruptedException {
-		missionSettingsConfiguration.clickModelAnswerButton();
-		Assert.assertTrue(missionSettingsConfiguration.isModelAnswerCodeBlockDisplayed());
+	    boolean isModelAnswerCodeBlockDisplayed = missionSettingsConfiguration.clickModelAnswerButton();
+		Assert.assertTrue(isModelAnswerCodeBlockDisplayed);
 	}
+	
+    /**
+     * Verifying zoom in is working properly 
+     */
+    @Test(priority = 6, enabled = true)
+    public void zoomInTest() throws InterruptedException {
+        assertTrue(missionSettingsConfiguration.clickZoomIn());
+    }
+
+    /**
+     * Verifying zoom out is working properly
+     */
+    @Test(priority = 7, enabled = true)
+    public void zoomOutTest() throws InterruptedException {
+        assertTrue(missionSettingsConfiguration.clickZoomOut());
+    }
+
+    /**
+     * Verifying zoom reset is working properly
+     */
+    @Test(priority = 8, enabled = true)
+    public void zoomResetTest() throws InterruptedException {
+        assertTrue(missionSettingsConfiguration.clickZoomReset());
+    }
+    
+    @Test(priority = 9, enabled = true)
+    public void removeCodeTest() throws InterruptedException {
+        boolean isCodeNotDisplayed =  missionSettingsConfiguration.removeCode();
+        Assert.assertTrue(isCodeNotDisplayed);
+    }
 
 	/**
 	 * Verifying reset button is working properly
+	 * @throws InterruptedException 
 	 */
-	@Test(priority = 6, enabled = true)
-	public void resetButtonTest() {
-		missionSettingsConfiguration.clickResetButton();
-		Assert.assertTrue(missionSettingsConfiguration.isModelAnswerCodeNotDisplayed());
+	@Test(priority = 10, enabled = true)
+	public void resetButtonTest() throws InterruptedException {
+		boolean isModelAnswerCodeNotDisplayed = missionSettingsConfiguration.clickResetButton();
+		Assert.assertTrue(isModelAnswerCodeNotDisplayed);
 	}
+	
+	
 
 	/**
 	 * Verifying decor checkbox is working properly
 	 * @throws InterruptedException 
 	 */
-	@Test(priority = 7, enabled = true)
+	@Test(priority = 11, enabled = true)
 	public void decorCheckboxTest() throws InterruptedException {
-		missionSettingsConfiguration.clickDecorCheckbox();
-		Assert.assertTrue(missionSettingsConfiguration.isDecorCheckboxChecked());
+		boolean isDecorCheckboxChecked = missionSettingsConfiguration.clickDecorCheckbox();
+		Assert.assertTrue(isDecorCheckboxChecked);
 	}
 
 	/**
 	 * Verifying dots checkbox is working properly
 	 */
-	@Test(priority = 8, enabled = true)
+	@Test(priority = 12, enabled = true)
 	public void dotsCheckboxTest() {
-		missionSettingsConfiguration.clickDotsCheckbox();
-		Assert.assertTrue(missionSettingsConfiguration.isDotsCheckboxChecked());
+		boolean isDotsCheckboxChecked = missionSettingsConfiguration.clickDotsCheckbox();
+		Assert.assertTrue(isDotsCheckboxChecked);
 	}
 
 	/**
 	 * Verifying keep code checkbox is working properly
 	 */
-	@Test(priority = 9, enabled = true)
+	@Test(priority = 13, enabled = true)
 	public void keepCodeCheckboxTest() {
-		missionSettingsConfiguration.clickKeepCodeCheckbox();
-		Assert.assertTrue(missionSettingsConfiguration.isKeepCodeCheckboxChecked());
+		boolean isKeepCodeCheckboxChecked = missionSettingsConfiguration.clickKeepCodeCheckbox();
+		Assert.assertTrue(isKeepCodeCheckboxChecked);
 	}
 
 	/**
 	 * Verifying toggle sound checkbox is working properly
 	 */
-	@Test(priority = 10, enabled = true)
+	@Test(priority = 14, enabled = true)
 	public void toogleSoundCheckboxTest() {
-		missionSettingsConfiguration.clickToggleSoundCheckbox();
-		Assert.assertTrue(missionSettingsConfiguration.isToggleSoundCheckboxUnchecked());
+		boolean isToggleSoundCheckboxUnchecked = missionSettingsConfiguration.clickToggleSoundCheckbox();
+		Assert.assertTrue(isToggleSoundCheckboxUnchecked);
 	}
 
 	/**
 	 * Verifying opacity slider is working properly
 	 */
-	@Test(priority = 11, enabled = true)
+	@Test(priority = 15, enabled = true)
 	public void opacitySliderTest() {
-		missionSettingsConfiguration.moveOpacitySlider();
-		Assert.assertTrue(missionSettingsConfiguration.checkIfOpacityChanged());
+		boolean checkIfOpacityChanged = missionSettingsConfiguration.moveOpacitySlider();
+		Assert.assertTrue(checkIfOpacityChanged);
 	}
 }
