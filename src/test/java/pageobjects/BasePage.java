@@ -69,4 +69,12 @@ public class BasePage {
 		jse.executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 
+    public void waitForEnableOf(WebElement element) {
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+    
+    public void waitForInvisibilityOf(WebElement element){
+        wait.until(ExpectedConditions.invisibilityOf(element));
+    }
+
 }

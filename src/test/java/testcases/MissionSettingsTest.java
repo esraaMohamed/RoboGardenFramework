@@ -129,29 +129,71 @@ public class MissionSettingsTest extends BaseTest{
         assertTrue(missionSettingsConfiguration.clickZoomReset());
     }
     
+    /**
+     * Verifying delete code is working properly
+     * @throws InterruptedException
+     */
     @Test(priority = 9, enabled = true)
     public void removeCodeTest() throws InterruptedException {
         boolean isCodeNotDisplayed =  missionSettingsConfiguration.removeCode();
         Assert.assertTrue(isCodeNotDisplayed);
     }
 
+    /**
+     * Verifyibg run button is working properly
+     * 
+     * @throws InterruptedException
+     */
+    @Test(priority = 10, enabled = true)
+    public void runButtonTest() throws InterruptedException {
+        Assert.assertFalse(missionSettingsConfiguration.clickRunButton());
+    }
+
+    /**
+     * Verifying pause button is working properly
+     * 
+     * @throws InterruptedException
+     */
+    @Test(priority = 11, enabled = true)
+    public void pauseButtonTest() throws InterruptedException {
+        Assert.assertFalse(missionSettingsConfiguration.clickPauseButton());
+    }
+
+    /**
+     * Verifying continue button is working properly
+     * 
+     * @throws InterruptedException
+     */
+    @Test(priority = 12, enabled = true)
+    public void continueButtonTest() throws InterruptedException {
+        Assert.assertFalse(missionSettingsConfiguration.clickContinueButton());
+    }
+
+    /**
+     * Verifying stop button is working properly
+     * 
+     * @throws InterruptedException
+     */
+    @Test(priority = 13, enabled = true)
+    public void stopButtonTest() throws InterruptedException {
+        Assert.assertFalse(missionSettingsConfiguration.clickStopButton());
+    }
+	
 	/**
-	 * Verifying reset button is working properly
-	 * @throws InterruptedException 
-	 */
-	@Test(priority = 10, enabled = true)
-	public void resetButtonTest() throws InterruptedException {
-		boolean isModelAnswerCodeNotDisplayed = missionSettingsConfiguration.clickResetButton();
-		Assert.assertTrue(isModelAnswerCodeNotDisplayed);
-	}
-	
-	
+     * Verifying reset button is working properly
+     * @throws InterruptedException 
+     */
+    @Test(priority = 14, enabled = true)
+    public void resetButtonTest() throws InterruptedException {
+        boolean isModelAnswerCodeNotDisplayed = missionSettingsConfiguration.clickResetButton();
+        Assert.assertTrue(isModelAnswerCodeNotDisplayed);
+    }
 
 	/**
 	 * Verifying decor checkbox is working properly
 	 * @throws InterruptedException 
 	 */
-	@Test(priority = 11, enabled = true)
+	@Test(priority = 15, enabled = true)
 	public void decorCheckboxTest() throws InterruptedException {
 		boolean isDecorCheckboxChecked = missionSettingsConfiguration.clickDecorCheckbox();
 		Assert.assertTrue(isDecorCheckboxChecked);
@@ -160,7 +202,7 @@ public class MissionSettingsTest extends BaseTest{
 	/**
 	 * Verifying dots checkbox is working properly
 	 */
-	@Test(priority = 12, enabled = true)
+	@Test(priority = 16, enabled = true)
 	public void dotsCheckboxTest() {
 		boolean isDotsCheckboxChecked = missionSettingsConfiguration.clickDotsCheckbox();
 		Assert.assertTrue(isDotsCheckboxChecked);
@@ -169,7 +211,7 @@ public class MissionSettingsTest extends BaseTest{
 	/**
 	 * Verifying keep code checkbox is working properly
 	 */
-	@Test(priority = 13, enabled = true)
+	@Test(priority = 17, enabled = true)
 	public void keepCodeCheckboxTest() {
 		boolean isKeepCodeCheckboxChecked = missionSettingsConfiguration.clickKeepCodeCheckbox();
 		Assert.assertTrue(isKeepCodeCheckboxChecked);
@@ -178,7 +220,7 @@ public class MissionSettingsTest extends BaseTest{
 	/**
 	 * Verifying toggle sound checkbox is working properly
 	 */
-	@Test(priority = 14, enabled = true)
+	@Test(priority = 18, enabled = true)
 	public void toogleSoundCheckboxTest() {
 		boolean isToggleSoundCheckboxUnchecked = missionSettingsConfiguration.clickToggleSoundCheckbox();
 		Assert.assertTrue(isToggleSoundCheckboxUnchecked);
@@ -187,7 +229,7 @@ public class MissionSettingsTest extends BaseTest{
 	/**
 	 * Verifying opacity slider is working properly
 	 */
-	@Test(priority = 15, enabled = true)
+	@Test(priority = 19, enabled = true)
 	public void opacitySliderTest() {
 		boolean checkIfOpacityChanged = missionSettingsConfiguration.moveOpacitySlider();
 		Assert.assertTrue(checkIfOpacityChanged);

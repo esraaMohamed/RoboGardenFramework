@@ -122,6 +122,17 @@ public class MissionPageObject extends BasePage {
     @FindBy(css = "g.blocklyTrash > image:nth-child(2)")
     private WebElement trash;
 
+    @FindBy(id = "stop_button")
+    private WebElement stopButton;
+
+    @FindBy(id = "pause_button")
+    private WebElement pauseButton;
+
+    @FindBy(id = "continue_button")
+    private WebElement continueButton;
+
+    WebElement resumeButton;
+
 	public MissionPageObject(WebDriver driver) {
 		super(driver);
 	}
@@ -347,10 +358,12 @@ public class MissionPageObject extends BasePage {
         click(zoomIn);
         return this;
     }
+
     public MissionPageObject clickZoomOut() {
         click(zoomOut);
         return this;
     }
+
     public MissionPageObject clickZoomReset() {
         click(resetZoom);
         return this;
@@ -359,9 +372,62 @@ public class MissionPageObject extends BasePage {
     public String getBlockLocation() {
         return parentElement.getLocation().toString();
     }
-    
-    public MissionPageObject removeCode (){
+
+    public MissionPageObject removeCode() {
         dragAndDropByElement(parentElement, trash);
+        return this;
+    }
+
+    public MissionPageObject clickPauseButton() {
+        click(pauseButton);
+        return this;
+    }
+
+    public MissionPageObject clickStopButton() {
+        click(stopButton);
+        return this;
+    }
+
+    public MissionPageObject clickResumeButton() {
+        click(continueButton);
+        return this;
+    }
+
+    public boolean stopButtonEnabled() {
+        return stopButton.isEnabled();
+    }
+
+    public boolean runButtonEnabled() {
+        return runButton.isEnabled();
+    }
+
+    public boolean pauseButtonEnabled() {
+        return pauseButton.isEnabled();
+    }
+
+    public boolean continueButtonVisible() {
+        try {
+            Thread.sleep(100);
+            resumeButton.isDisplayed();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public MissionPageObject waitStopButtonToBeEnabled() {
+        waitForEnableOf(stopButton);
+        return this;
+    }
+
+    public MissionPageObject waitContinueButtonToBeVisible() {
+        waitForVisibilityOf(continueButton);
+        resumeButton = driver.findElement(By.id("continue_button"));
+        return this;
+    }
+
+    public MissionPageObject waitRunButtonToBeEnabled() {
+        waitForEnableOf(runButton);
         return this;
     }
 }

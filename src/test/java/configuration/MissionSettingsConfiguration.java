@@ -49,8 +49,7 @@ public class MissionSettingsConfiguration {
 	
 	
 	public boolean clickResetButton() throws InterruptedException {
-		boolean isCodeBlockNotDisplayed = missionPage.clickModelAnswerButton()
-		        .clickResetButton()
+		boolean isCodeBlockNotDisplayed = missionPage.clickResetButton()
 		        .isCodeBlockNotDisplayed();
 		return isCodeBlockNotDisplayed;
 	}
@@ -117,8 +116,34 @@ public class MissionSettingsConfiguration {
         else
             return false;
     }
-    public boolean removeCode() throws InterruptedException{
-        return missionPage.removeCode().isCodeBlockNotDisplayed();
-        
+
+    public boolean removeCode() throws InterruptedException {
+        return missionPage.removeCode()
+                .isCodeBlockNotDisplayed();
+    }
+
+    public boolean clickRunButton() throws InterruptedException {
+        return missionPage.clickModelAnswerButton()
+                .clickRunButton()
+                .waitStopButtonToBeEnabled()
+                .runButtonEnabled();
+    }
+
+    public boolean clickPauseButton() throws InterruptedException {
+        return missionPage.clickPauseButton()
+                .waitContinueButtonToBeVisible()
+                .pauseButtonEnabled();
+    }
+
+    public boolean clickContinueButton() throws InterruptedException {
+        return missionPage.clickResumeButton()
+                .waitStopButtonToBeEnabled()
+                .continueButtonVisible();
+    }
+
+    public boolean clickStopButton() throws InterruptedException {
+        return missionPage.clickStopButton()
+                .waitRunButtonToBeEnabled()
+                .stopButtonEnabled();
     }
 }
