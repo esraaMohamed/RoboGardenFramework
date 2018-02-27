@@ -12,6 +12,9 @@
 	},
 	"MissionTextual": {
 		"missionIndexNumber": "0",
-		"answerIndexNumber": "0"
+		"answerIndexNumber": "3"
+	},
+	"CodeSnippetName":{
+		"snippetName": "snippetName"
 	}
 }

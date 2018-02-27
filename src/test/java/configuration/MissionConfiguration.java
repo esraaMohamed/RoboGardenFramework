@@ -62,4 +62,8 @@ public class MissionConfiguration {
 		missionPage.clickTextualMissionAnswer(index)
 		.clickCheckAnswerButton();
 	}
+	
+	public boolean checkSuccessPopupAppears() {
+		return missionPage.checkIfMissionAccomplishedPopupAppeared();
+	}
 }

@@ -1,5 +1,6 @@
 package testcases;
 
+import org.junit.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -29,11 +30,11 @@ public class McqMissionTest extends BaseTest{
 	JourneyConfiguration journeyConfiguration;
 
 	RoadMapConfiguration roadMapConfiguration;
-	
+
 	MissionConfiguration missionConfiguration;
-	
+
 	String username, password, journeyIndexNumber, missionIndexNumber, answerIndexNumber;
-	
+
 	@BeforeTest
 	public void init() {
 		loginPage = new LoginPageObject(driver);
@@ -52,7 +53,7 @@ public class McqMissionTest extends BaseTest{
 		missionIndexNumber = jsonTestData.getData("MissionTextual").get("missionIndexNumber");
 		answerIndexNumber = jsonTestData.getData("MissionTextual").get("answerIndexNumber");
 	}
-	
+
 	@Test
 	public void mcqMissionTest() throws InterruptedException {
 		journeyConfiguration.clickTextualJourneysLink();
@@ -60,9 +61,12 @@ public class McqMissionTest extends BaseTest{
 		roadMapConfiguration.closeHint();
 		roadMapConfiguration.clickMission(Integer.valueOf(missionIndexNumber));
 		missionConfiguration.generateModelAnswer();
-        if (Integer.valueOf(missionIndexNumber) == 0)
-		missionConfiguration.closeJavascriptPopup();
+		if (Integer.valueOf(missionIndexNumber) == 0)
+		{
+			missionConfiguration.closeJavascriptPopup();
+		}
 		missionConfiguration.selectAndSubmitJavascriptAnswer(Integer.valueOf(answerIndexNumber));
+		Assert.assertTrue(missionConfiguration.checkSuccessPopupAppears());	
 	}
 
 }
