@@ -57,10 +57,10 @@ public class MissionPageObject extends BasePage {
 	@FindBy(xpath = "/html/body/div[1]/div/div/div[1]/img")
 	private WebElement closeLoadCodePopupButton;
 
-	@FindBy(id = "save_code")
+	@FindBy(css = ".glyphicon-floppy-disk")
 	private WebElement saveCodeButton;
 	
-	@FindBy(css = ".ng-touched")
+	@FindBy(name = "mission_snippet_name")
 	private WebElement snippetNameTxt;
 	
 	@FindBy(id = "check_answer_button")
@@ -172,7 +172,8 @@ public class MissionPageObject extends BasePage {
 
 	public MissionPageObject clickModelAnswerButton() throws InterruptedException {
 		waitForVisibilityOf(modelAnswer);
-		clickByJavaExecutor(modelAnswer);
+		Thread.sleep(500);
+		click(modelAnswer);
 		return this;
 	}
 
@@ -181,8 +182,9 @@ public class MissionPageObject extends BasePage {
 		return this;
 	}
 
-	public String dialogueButtonText() {
+	public String dialogueButtonText() throws InterruptedException {
 		waitForVisibilityOf(checkAnswerButton);
+		Thread.sleep(100);
 		return checkAnswerButton.getText();
 	}
 
@@ -455,8 +457,9 @@ public class MissionPageObject extends BasePage {
 		return popupTitle.isDisplayed();
 	}
 	
-	public MissionPageObject inputSnippetName(String snippetName) {
+	public MissionPageObject inputSnippetName(String snippetName) throws InterruptedException {
 		waitForVisibilityOf(snippetNameTxt);
+		Thread.sleep(100);
 		setText(snippetNameTxt, snippetName);
 		return this;
 	}
