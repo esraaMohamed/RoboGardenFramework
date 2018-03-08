@@ -53,16 +53,16 @@ public class MissionBusinessHandler {
 		.clickModelAnswerButton()
 		.clickRunButton();
 	}
-	
+
 	public void closeJavascriptPopup() {
 		missionPage.clickCloseJavascriptPopup();
 	}
-	
-	public void selectAndSubmitJavascriptAnswer(int index) throws InterruptedException {
+
+	public void selectAndSubmitJavascriptAnswer(int index) {
 		missionPage.clickTextualMissionAnswer(index)
 		.clickCheckAnswerButton();
 	}
-	
+
 	public boolean checkSuccessPopupAppears() {
 		return missionPage.checkIfMissionAccomplishedPopupAppeared();
 	}

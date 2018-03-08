@@ -62,14 +62,14 @@ public class MissionSettingsBusinessHandler {
 	}
 
 
-	public boolean clickResetButton() throws InterruptedException {
+	public boolean clickResetButton() {
 		boolean isCodeBlockNotDisplayed = missionPage.clickResetButton()
 				.isCodeBlockNotDisplayed();
 		return isCodeBlockNotDisplayed;
 	}
 
 
-	public boolean clickDecorCheckbox() throws InterruptedException {
+	public boolean clickDecorCheckbox()  {
 		boolean checkIfDecorCheckboxIsChecked = missionPage.clickWorkspaceSettingsButton()
 				.clickDecorCheckbox()
 				.checkIfDecorCheckboxIsChecked();
@@ -100,7 +100,7 @@ public class MissionSettingsBusinessHandler {
 		return checkIfOpacityValueChanged;
 	}
 
-	public boolean clickZoomIn() throws InterruptedException {
+	public boolean clickZoomIn()  {
 		missionPage.clickZoomReset();
 		beforeZoom = missionPage.getBlockLocation();
 		missionPage.clickZoomIn();
@@ -111,7 +111,7 @@ public class MissionSettingsBusinessHandler {
 			return false;
 	}
 
-	public boolean clickZoomOut() throws InterruptedException {
+	public boolean clickZoomOut() {
 		beforeZoom = missionPage.getBlockLocation();
 		missionPage.clickZoomOut();
 		afterZoom = missionPage.getBlockLocation();
@@ -121,7 +121,7 @@ public class MissionSettingsBusinessHandler {
 			return false;
 	}
 
-	public boolean clickZoomReset() throws InterruptedException {
+	public boolean clickZoomReset() {
 		beforeZoom = missionPage.getBlockLocation();
 		missionPage.clickZoomReset();
 		afterZoom = missionPage.getBlockLocation();
@@ -131,7 +131,7 @@ public class MissionSettingsBusinessHandler {
 			return false;
 	}
 
-	public boolean removeCode() throws InterruptedException {
+	public boolean removeCode() {
 		return missionPage.removeCode()
 				.isCodeBlockNotDisplayed();
 	}
@@ -143,19 +143,19 @@ public class MissionSettingsBusinessHandler {
 				.runButtonEnabled();
 	}
 
-	public boolean clickPauseButton() throws InterruptedException {
+	public boolean clickPauseButton() {
 		return missionPage.clickPauseButton()
 				.waitContinueButtonToBeVisible()
 				.pauseButtonEnabled();
 	}
 
-	public boolean clickContinueButton() throws InterruptedException {
+	public boolean clickContinueButton() {
 		return missionPage.clickResumeButton()
 				.waitStopButtonToBeEnabled()
 				.continueButtonVisible();
 	}
 
-	public boolean clickStopButton() throws InterruptedException {
+	public boolean clickStopButton() {
 		return missionPage.clickStopButton()
 				.waitRunButtonToBeEnabled()
 				.stopButtonEnabled();

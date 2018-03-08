@@ -70,6 +70,7 @@ public class MissionSettingsTest extends BaseTest{
     }
     /**
 	 * Verifying save code button is working properly
+	 * 
      * @throws InterruptedException 
 	 */
 	@Test(priority = 2, enabled = true)
@@ -99,6 +100,7 @@ public class MissionSettingsTest extends BaseTest{
 
 	/**
 	 * Verifying tour guide button is working properly
+	 * 
 	 * @throws InterruptedException 
 	 */
 	@Test(priority = 5, enabled = true)
@@ -128,7 +130,7 @@ public class MissionSettingsTest extends BaseTest{
      * Verifying zoom out is working properly
      */
     @Test(priority = 8, enabled = true)
-    public void zoomOutTest() throws InterruptedException {
+    public void zoomOutTest() {
         assertTrue(missionSettingsBusinessHandler.clickZoomOut());
     }
 
@@ -136,22 +138,21 @@ public class MissionSettingsTest extends BaseTest{
      * Verifying zoom reset is working properly
      */
     @Test(priority = 9, enabled = true)
-    public void zoomResetTest() throws InterruptedException {
+    public void zoomResetTest() {
         assertTrue(missionSettingsBusinessHandler.clickZoomReset());
     }
     
     /**
      * Verifying delete code is working properly
-     * @throws InterruptedException
      */
     @Test(priority = 10, enabled = true)
-    public void removeCodeTest() throws InterruptedException {
+    public void removeCodeTest() {
         boolean isCodeNotDisplayed =  missionSettingsBusinessHandler.removeCode();
         Assert.assertTrue(isCodeNotDisplayed);
     }
 
     /**
-     * Verifyibg run button is working properly
+     * Verifying run button is working properly
      * 
      * @throws InterruptedException
      */
@@ -162,50 +163,42 @@ public class MissionSettingsTest extends BaseTest{
 
     /**
      * Verifying pause button is working properly
-     * 
-     * @throws InterruptedException
      */
     @Test(priority = 12, enabled = true)
-    public void pauseButtonTest() throws InterruptedException {
+    public void pauseButtonTest()  {
         Assert.assertFalse(missionSettingsBusinessHandler.clickPauseButton());
     }
 
     /**
      * Verifying continue button is working properly
-     * 
-     * @throws InterruptedException
      */
     @Test(priority = 13, enabled = true)
-    public void continueButtonTest() throws InterruptedException {
+    public void continueButtonTest()  {
         Assert.assertFalse(missionSettingsBusinessHandler.clickContinueButton());
     }
 
     /**
      * Verifying stop button is working properly
-     * 
-     * @throws InterruptedException
      */
     @Test(priority = 14, enabled = true)
-    public void stopButtonTest() throws InterruptedException {
+    public void stopButtonTest() {
         Assert.assertFalse(missionSettingsBusinessHandler.clickStopButton());
     }
 	
 	/**
      * Verifying reset button is working properly
-     * @throws InterruptedException 
      */
     @Test(priority = 15, enabled = true)
-    public void resetButtonTest() throws InterruptedException {
+    public void resetButtonTest() {
         boolean isModelAnswerCodeNotDisplayed = missionSettingsBusinessHandler.clickResetButton();
         Assert.assertTrue(isModelAnswerCodeNotDisplayed);
     }
 
 	/**
 	 * Verifying decor checkbox is working properly
-	 * @throws InterruptedException 
 	 */
 	@Test(priority = 16, enabled = true)
-	public void decorCheckboxTest() throws InterruptedException {
+	public void decorCheckboxTest()  {
 		boolean isDecorCheckboxChecked = missionSettingsBusinessHandler.clickDecorCheckbox();
 		Assert.assertTrue(isDecorCheckboxChecked);
 	}

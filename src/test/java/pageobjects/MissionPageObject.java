@@ -47,7 +47,7 @@ public class MissionPageObject extends BasePage {
 
 	@FindBy(xpath = "/html/body/div[2]/div/div/div[2]/div/div[1]/uib-accordion/div/div/div[2]/div/div/div/div[1]/div[2]/div[2]/div[5]/a/span")
 	private WebElement loadCodeButton;
-	
+
 	@FindBy(id= "code_list")
 	private WebElement loadCodeList;
 
@@ -59,19 +59,19 @@ public class MissionPageObject extends BasePage {
 
 	@FindBy(css = ".glyphicon-floppy-disk")
 	private WebElement saveCodeButton;
-	
+
 	@FindBy(name = "mission_snippet_name")
 	private WebElement snippetNameTxt;
-	
+
 	@FindBy(id = "check_answer_button")
 	private WebElement saveSnippetNameButton;
-	
+
 	@FindBy(css = ".btn-danger")
 	private WebElement deleteCodeSnippetButton;
 
 	@FindBy(css = ".confirm")
 	private WebElement confirmButton;
-	
+
 	@FindBy(css = "div[class='sa-icon sa-success animate']")
 	private WebElement saveMissionCodePopup;
 
@@ -177,7 +177,7 @@ public class MissionPageObject extends BasePage {
 		return this;
 	}
 
-	public MissionPageObject clickRunButton() throws InterruptedException {
+	public MissionPageObject clickRunButton() {
 		clickByJavaExecutor(runButton);
 		return this;
 	}
@@ -289,7 +289,7 @@ public class MissionPageObject extends BasePage {
 		clickByJavaExecutor(closeJavascriptPopup);
 	}
 
-	public MissionPageObject clickTextualMissionAnswer(int index) throws InterruptedException {
+	public MissionPageObject clickTextualMissionAnswer(int index) {
 		waitForVisibilityOf(textualMissionAnswer.get(index));
 		clickByJavaExecutor(textualMissionAnswer.get(index));
 		return this;
@@ -306,7 +306,7 @@ public class MissionPageObject extends BasePage {
 		return this;
 	}
 
-	public MissionPageObject clickWorkspaceSettingsButton() throws InterruptedException {
+	public MissionPageObject clickWorkspaceSettingsButton(){
 		clickByJavaExecutor(workspaceSettings);
 		hover(workspaceSettings);
 		return this;
@@ -456,36 +456,36 @@ public class MissionPageObject extends BasePage {
 		waitForVisibilityOf(popupTitle);
 		return popupTitle.isDisplayed();
 	}
-	
+
 	public MissionPageObject inputSnippetName(String snippetName) throws InterruptedException {
 		waitForVisibilityOf(snippetNameTxt);
 		Thread.sleep(100);
 		setText(snippetNameTxt, snippetName);
 		return this;
 	}
-	
+
 	public MissionPageObject clickSaveSnippetNameButton() {
 		waitForVisibilityOf(saveSnippetNameButton);
 		clickByJavaExecutor(saveSnippetNameButton);
 		return this;
 	}
-	
+
 	public boolean isSaveCodeSuccessPopupDisplayed() {
 		waitForVisibilityOf(saveMissionCodePopup);
 		return saveMissionCodePopup.isDisplayed();
 	}
-	
+
 	public MissionPageObject clickConfirmButton() {
 		clickByJavaExecutor(confirmButton);
 		return this;
 	}
-	
+
 	public MissionPageObject selectSavedCode(String snippetName) {
 		Select codeList  = new Select(loadCodeList);
 		codeList.selectByVisibleText(snippetName);
 		return this;
 	}
-	
+
 	public MissionPageObject clickLoadCodeSnippetButton() {
 		waitForVisibilityOf(saveSnippetNameButton);
 		clickByJavaExecutor(saveSnippetNameButton);

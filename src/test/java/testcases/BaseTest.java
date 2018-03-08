@@ -36,6 +36,7 @@ public class BaseTest {
 		CHROME("Chrome"),
 		FIREFOX("Firefox"),
 		SAFARI("Safari");
+		
 		private final String browserName;
 
 		private Browsers(String browserName) {
@@ -61,7 +62,6 @@ public class BaseTest {
 		public String getOsName() {
 			return osName;
 		}
-
 	}
 
 	@BeforeSuite
