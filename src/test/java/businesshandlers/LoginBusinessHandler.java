@@ -1,14 +1,14 @@
-package configuration;
+package businesshandlers;
 
 import pageobjects.HomePageObject;
 import pageobjects.JourneyPageObject;
 import pageobjects.LoginPageObject;
 
-public class LoginConfiguration {
+public class LoginBusinessHandler {
 	LoginPageObject loginPage;
 	HomePageObject homePage;
 
-	public LoginConfiguration(LoginPageObject loginPage, HomePageObject homePage) {
+	public LoginBusinessHandler(LoginPageObject loginPage, HomePageObject homePage) {
 		this.loginPage = loginPage;
 		this.homePage = homePage;
 	}

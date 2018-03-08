@@ -1,15 +1,15 @@
-package configuration;
+package businesshandlers;
 
 import pageobjects.JourneyPageObject;
 import pageobjects.RoadMapPageObject;
 
-public class JourneyConfiguration {
+public class JourneyBusinessHandler {
 
     JourneyPageObject journeyPage;
 
     int journeyCount;
 
-    public JourneyConfiguration(JourneyPageObject journeyPage) {
+    public JourneyBusinessHandler(JourneyPageObject journeyPage) {
         this.journeyPage = journeyPage;
     }
 

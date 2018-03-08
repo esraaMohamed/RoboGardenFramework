@@ -1,12 +1,12 @@
-package configuration;
+package businesshandlers;
 
 import pageobjects.MissionPageObject;
 
-public class MissionSettingsConfiguration {
+public class MissionSettingsBusinessHandler {
 	MissionPageObject missionPage;
 	String beforeZoom , afterZoom;
 
-	public MissionSettingsConfiguration(MissionPageObject missionPage) {
+	public MissionSettingsBusinessHandler(MissionPageObject missionPage) {
 		this.missionPage = missionPage;
 	}
 

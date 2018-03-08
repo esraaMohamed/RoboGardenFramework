@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import configuration.LoginConfiguration;
+import businesshandlers.LoginBusinessHandler;
 import pageobjects.HomePageObject;
 import pageobjects.LoginPageObject;
 
@@ -15,7 +15,7 @@ public class LoginTest extends BaseTest {
 
 	LoginPageObject loginPage;
 
-	LoginConfiguration loginConfiguration;
+	LoginBusinessHandler loginBusinessHandler;
 
 	HomePageObject homePage;
 
@@ -25,7 +25,7 @@ public class LoginTest extends BaseTest {
 	public void init() {
 		loginPage = new LoginPageObject(driver);
 		homePage = new HomePageObject(driver);
-		loginConfiguration = new LoginConfiguration(loginPage, homePage);
+		loginBusinessHandler = new LoginBusinessHandler(loginPage, homePage);
 		username = jsonTestData.getData("Login").get("username");
 		password = jsonTestData.getData("Login").get("password");
 		failedUsername = jsonTestData.getData("invalidLogin").get("username");
@@ -37,8 +37,8 @@ public class LoginTest extends BaseTest {
 	 */
 	@Test(priority = 1)
 	public void invalidLogin() {
-		loginConfiguration.invalidLogin(failedUsername, failedPassword);
-		Assert.assertEquals("Wrong Username or Password, Please try again!", loginConfiguration.getWrongUsernameAndPasswordText());
+		loginBusinessHandler.invalidLogin(failedUsername, failedPassword);
+		Assert.assertEquals("Wrong Username or Password, Please try again!", loginBusinessHandler.getWrongUsernameAndPasswordText());
 	}
 
 	/**
@@ -46,8 +46,8 @@ public class LoginTest extends BaseTest {
 	 */
 	@Test(priority = 2)
 	public void validLogin() {
-		loginConfiguration.validLogin(username, password);
-		Assert.assertTrue(loginConfiguration.isUserLoggedIn(), "Login Failed");
+		loginBusinessHandler.validLogin(username, password);
+		Assert.assertTrue(loginBusinessHandler.isUserLoggedIn(), "Login Failed");
 	}
 
 	/**
@@ -55,7 +55,7 @@ public class LoginTest extends BaseTest {
 	 */
 	@Test(priority = 3)
 	public void logout() {
-		loginConfiguration.logout();
-		Assert.assertTrue(loginConfiguration.isLoginButtonDisplayed(), "Logout Failed");
+		loginBusinessHandler.logout();
+		Assert.assertTrue(loginBusinessHandler.isLoginButtonDisplayed(), "Logout Failed");
 	}
 }

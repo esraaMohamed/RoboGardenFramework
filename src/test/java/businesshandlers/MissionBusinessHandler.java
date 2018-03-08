@@ -1,9 +1,9 @@
-package configuration;
+package businesshandlers;
 
 import pageobjects.MissionPageObject;
 import pageobjects.RoadMapPageObject;
 
-public class MissionConfiguration {
+public class MissionBusinessHandler {
 
 	MissionPageObject missionPage;
 
@@ -13,7 +13,7 @@ public class MissionConfiguration {
 
 	String[] urlSubString, urlSubString1;
 
-	public MissionConfiguration(MissionPageObject missionPage, RoadMapPageObject roadMapPage) {
+	public MissionBusinessHandler(MissionPageObject missionPage, RoadMapPageObject roadMapPage) {
 		this.missionPage = missionPage;
 		this.roadMapPage = roadMapPage;
 	}

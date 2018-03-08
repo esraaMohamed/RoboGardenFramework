@@ -1,4 +1,4 @@
-package configuration;
+package businesshandlers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,19 +6,36 @@ import java.util.List;
 import pageobjects.MissionPageObject;
 import pageobjects.RoadMapPageObject;
 
-public class RoadMapConfiguration {
+public class RoadMapBusinessHandler {
 
 	RoadMapPageObject roadMapPage;
 
-	MissionConfiguration missionConfiguration;
+	MissionBusinessHandler missionBusinessHandler;
 
 	String failedText, successText, failedMission;
 
 	List<String> failedTextObj = new ArrayList<String>();
 
-	public RoadMapConfiguration(RoadMapPageObject roadMapPage, MissionPageObject missionPage) {
+	public static enum VerificationTextMessages{
+		RETRY_MISSION("RETRY MISSION"),
+		GO_TO_NEXT_MISSION("GO TO NEXT MISSION"),
+		BACK_TO_ROADMAP("BACK TO ROADMAP");
+		
+		private String friendlyName; 
+
+		private VerificationTextMessages(String name) { 
+			friendlyName = name; 
+		}
+
+		@Override
+		public String toString() { 
+			return friendlyName; 
+		}
+	};
+
+	public RoadMapBusinessHandler(RoadMapPageObject roadMapPage, MissionPageObject missionPage) {
 		this.roadMapPage = roadMapPage;
-		this.missionConfiguration = new MissionConfiguration(missionPage, roadMapPage);
+		this.missionBusinessHandler = new MissionBusinessHandler(missionPage, roadMapPage);
 	}
 
 	public void closeHint() {
@@ -36,23 +53,23 @@ public class RoadMapConfiguration {
 				roadMapPage.clickNextSlickDot();
 				roadMapPage.clickMissionByIndex(i);
 			}
-			failedText = missionConfiguration.failedMissionCheck();
-			if (!failedText.equals("RETRY MISSION")) {
+			failedText = missionBusinessHandler.failedMissionCheck();
+			if (!failedText.equals(VerificationTextMessages.RETRY_MISSION.toString())) {
 				System.out.println("Failed mission number in failuer case: "+(i+1));
 				getFailedMission();
 				continue;
 			}
-			successText = missionConfiguration.missionCheck();
-			if (!((successText.equals("GO TO NEXT MISSION")) || (successText.equals("BACK TO ROADMAP")))) {
+			successText = missionBusinessHandler.missionCheck();
+			if (!((successText.equals(VerificationTextMessages.GO_TO_NEXT_MISSION.toString()) || (successText.equals(VerificationTextMessages.BACK_TO_ROADMAP.toString()))))) {
 				if ((i + 1) % 5 != 0) {
 					System.out.println("Failed mission number in success case: "+(i+1));
 					getFailedMission();
-					missionConfiguration.backToRoadmap();
+					missionBusinessHandler.backToRoadmap();
 					roadMapPage.clickMissionByIndex(i + 1);
 				} else {
 					System.out.println("Failed mission number in success case: "+(i+1));
 					getFailedMission();
-					missionConfiguration.backToRoadmap();
+					missionBusinessHandler.backToRoadmap();
 				}
 			}
 		}
@@ -63,7 +80,7 @@ public class RoadMapConfiguration {
 	}
 
 	public void getFailedMission() {
-		failedMission = missionConfiguration.getFailedMissionTest();
+		failedMission = missionBusinessHandler.getFailedMissionTest();
 		failedTextObj.add(failedMission);
 	}
 
@@ -71,8 +88,8 @@ public class RoadMapConfiguration {
 		roadMapPage.clickJourneyButton();
 	}
 
-    public void clickMission(int missionIndex) {
-        roadMapPage.clickSlickDotByIndex(missionIndex / 5)
-        .clickMissionByIndex(missionIndex);
-    }
+	public void clickMission(int missionIndex) {
+		roadMapPage.clickSlickDotByIndex(missionIndex / 5)
+		.clickMissionByIndex(missionIndex);
+	}
 }

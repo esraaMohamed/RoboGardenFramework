@@ -7,9 +7,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import configuration.JourneyConfiguration;
-import configuration.LoginConfiguration;
-import configuration.RoadMapConfiguration;
+import businesshandlers.JourneyBusinessHandler;
+import businesshandlers.LoginBusinessHandler;
+import businesshandlers.RoadMapBusinessHandler;
 import pageobjects.HomePageObject;
 import pageobjects.JourneyPageObject;
 import pageobjects.LoginPageObject;
@@ -28,11 +28,11 @@ public class RegressionTest extends BaseTest {
 
 	MissionPageObject missionPage;
 
-	LoginConfiguration loginConfiguration;
+	LoginBusinessHandler loginBusinessHandler;
 
-	JourneyConfiguration journeyConfiguration;
+	JourneyBusinessHandler journeyBusinessHandler;
 
-	RoadMapConfiguration roadMapConfiguration;
+	RoadMapBusinessHandler roadMapBusinessHandler;
 
 	String username, password, journeyIndexNumber;
 
@@ -47,9 +47,9 @@ public class RegressionTest extends BaseTest {
 		journeyPage = new JourneyPageObject(driver);
 		roadMapPage = new RoadMapPageObject(driver);
 		missionPage = new MissionPageObject(driver);
-		loginConfiguration = new LoginConfiguration(loginPage, homePage);
-		journeyConfiguration = new JourneyConfiguration(journeyPage);
-		roadMapConfiguration = new RoadMapConfiguration(roadMapPage, missionPage);
+		loginBusinessHandler = new LoginBusinessHandler(loginPage, homePage);
+		journeyBusinessHandler = new JourneyBusinessHandler(journeyPage);
+		roadMapBusinessHandler = new RoadMapBusinessHandler(roadMapPage, missionPage);
 		username = jsonTestData.getData("Login").get("username");
 		password = jsonTestData.getData("Login").get("password");
 		journeyIndexNumber = jsonTestData.getData("Journey").get("journeyIndexNumber");
@@ -63,11 +63,11 @@ public class RegressionTest extends BaseTest {
 	 */
 	@Test(priority = 1, enabled = true)
 	public void regressionForSpecificJourney() throws InterruptedException {
-		journeyPage = loginConfiguration.validLogin(username, password);
-		roadMapPage = journeyConfiguration.clickPlayNowButtonByIndex(Integer.valueOf(journeyIndexNumber));
-		roadMapConfiguration.closeHint();
-		roadMapConfiguration.clickOnMission();
-		failedMissions = roadMapConfiguration.getFailedTextForAssertion();
+		journeyPage = loginBusinessHandler.validLogin(username, password);
+		roadMapPage = journeyBusinessHandler.clickPlayNowButtonByIndex(Integer.valueOf(journeyIndexNumber));
+		roadMapBusinessHandler.closeHint();
+		roadMapBusinessHandler.clickOnMission();
+		failedMissions = roadMapBusinessHandler.getFailedTextForAssertion();
 		if (failedMissions.size() > 0) {
 			System.out.println("Failed missions are:");
 			for (int i = 0; i < failedMissions.size(); i++) {
@@ -84,17 +84,17 @@ public class RegressionTest extends BaseTest {
 	 */
 	@Test(priority = 2, enabled = false)
 	public void regressionForAllJourneys() throws InterruptedException {
-		journeyPage = loginConfiguration.validLogin(username, password);
-		journeyCount = journeyConfiguration.journeyCount();
+		journeyPage = loginBusinessHandler.validLogin(username, password);
+		journeyCount = journeyBusinessHandler.journeyCount();
 		for (int i = 0; i < journeyCount; i++) {
 			System.out.println("Journey no. "+(i+1));
-			roadMapPage = journeyConfiguration.clickPlayNowButtonByIndex(i);
+			roadMapPage = journeyBusinessHandler.clickPlayNowButtonByIndex(i);
 			if (i == 0)
-				roadMapConfiguration.closeHint();
-			roadMapConfiguration.clickOnMission();
-			roadMapConfiguration.clickJourneyButton();
+				roadMapBusinessHandler.closeHint();
+			roadMapBusinessHandler.clickOnMission();
+			roadMapBusinessHandler.clickJourneyButton();
 		}
-		failedMissions = roadMapConfiguration.getFailedTextForAssertion();
+		failedMissions = roadMapBusinessHandler.getFailedTextForAssertion();
 		if (failedMissions.size() > 0) {
 			System.out.println("Failed missions are:");
 			for (int i = 0; i < failedMissions.size(); i++) {

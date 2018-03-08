@@ -37,8 +37,8 @@ public class BasePage {
 		action.moveToElement(element).build().perform();
 	}
 
-	public void dragAndDropByLocation(WebElement element, int x, int y) {
-		action.dragAndDropBy(element, x, y).build().perform();
+	public void dragAndDropByLocation(WebElement element, int xCoordinate, int yCoordinate) {
+		action.dragAndDropBy(element, xCoordinate, yCoordinate).build().perform();
 	}
 
 	public void dragAndDropByElement(WebElement draggable,WebElement droppable) {

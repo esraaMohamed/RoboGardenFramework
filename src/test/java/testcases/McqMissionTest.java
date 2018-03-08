@@ -4,10 +4,10 @@ import org.junit.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import configuration.JourneyConfiguration;
-import configuration.LoginConfiguration;
-import configuration.MissionConfiguration;
-import configuration.RoadMapConfiguration;
+import businesshandlers.JourneyBusinessHandler;
+import businesshandlers.LoginBusinessHandler;
+import businesshandlers.MissionBusinessHandler;
+import businesshandlers.RoadMapBusinessHandler;
 import pageobjects.HomePageObject;
 import pageobjects.JourneyPageObject;
 import pageobjects.LoginPageObject;
@@ -25,13 +25,13 @@ public class McqMissionTest extends BaseTest{
 
 	MissionPageObject missionPage;
 
-	LoginConfiguration loginConfiguration;
+	LoginBusinessHandler loginBusinessHandler;
 
-	JourneyConfiguration journeyConfiguration;
+	JourneyBusinessHandler journeyBusinessHandler;
 
-	RoadMapConfiguration roadMapConfiguration;
+	RoadMapBusinessHandler roadMapBusinessHandler;
 
-	MissionConfiguration missionConfiguration;
+	MissionBusinessHandler missionBusinessHandler;
 
 	String username, password, journeyIndexNumber, missionIndexNumber, answerIndexNumber;
 
@@ -42,13 +42,13 @@ public class McqMissionTest extends BaseTest{
 		journeyPage = new JourneyPageObject(driver);
 		roadMapPage = new RoadMapPageObject(driver);
 		missionPage = new MissionPageObject(driver);
-		loginConfiguration = new LoginConfiguration(loginPage, homePage);
-		journeyConfiguration = new JourneyConfiguration(journeyPage);
-		roadMapConfiguration = new RoadMapConfiguration(roadMapPage, missionPage);
-		missionConfiguration = new MissionConfiguration(missionPage, roadMapPage);
+		loginBusinessHandler = new LoginBusinessHandler(loginPage, homePage);
+		journeyBusinessHandler = new JourneyBusinessHandler(journeyPage);
+		roadMapBusinessHandler = new RoadMapBusinessHandler(roadMapPage, missionPage);
+		missionBusinessHandler = new MissionBusinessHandler(missionPage, roadMapPage);
 		username = jsonTestData.getData("Login").get("username");
 		password = jsonTestData.getData("Login").get("password");
-		journeyPage = loginConfiguration.validLogin(username, password);
+		journeyPage = loginBusinessHandler.validLogin(username, password);
 		journeyIndexNumber = jsonTestData.getData("Journey").get("journeyIndexNumber");
 		missionIndexNumber = jsonTestData.getData("MissionTextual").get("missionIndexNumber");
 		answerIndexNumber = jsonTestData.getData("MissionTextual").get("answerIndexNumber");
@@ -56,17 +56,17 @@ public class McqMissionTest extends BaseTest{
 
 	@Test
 	public void mcqMissionTest() throws InterruptedException {
-		journeyConfiguration.clickTextualJourneysLink();
-		roadMapPage = journeyConfiguration.clickPlayNowButtonByIndex(Integer.valueOf(journeyIndexNumber));
-		roadMapConfiguration.closeHint();
-		roadMapConfiguration.clickMission(Integer.valueOf(missionIndexNumber));
-		missionConfiguration.generateModelAnswer();
+		journeyBusinessHandler.clickTextualJourneysLink();
+		roadMapPage = journeyBusinessHandler.clickPlayNowButtonByIndex(Integer.valueOf(journeyIndexNumber));
+		roadMapBusinessHandler.closeHint();
+		roadMapBusinessHandler.clickMission(Integer.valueOf(missionIndexNumber));
+		missionBusinessHandler.generateModelAnswer();
 		if (Integer.valueOf(missionIndexNumber) == 0)
 		{
-			missionConfiguration.closeJavascriptPopup();
+			missionBusinessHandler.closeJavascriptPopup();
 		}
-		missionConfiguration.selectAndSubmitJavascriptAnswer(Integer.valueOf(answerIndexNumber));
-		Assert.assertTrue(missionConfiguration.checkSuccessPopupAppears());	
+		missionBusinessHandler.selectAndSubmitJavascriptAnswer(Integer.valueOf(answerIndexNumber));
+		Assert.assertTrue(missionBusinessHandler.checkSuccessPopupAppears());	
 	}
 
 }
