@@ -32,14 +32,14 @@ public class BaseTest {
 	public static String BaseURl;
 	static Logger logger;
 
-	public enum Browsers{
+	public enum BROWSERS{
 		CHROME("Chrome"),
 		FIREFOX("Firefox"),
 		SAFARI("Safari");
 		
 		private final String browserName;
 
-		private Browsers(String browserName) {
+		private BROWSERS(String browserName) {
 			this.browserName = browserName;
 		}
 
@@ -78,7 +78,7 @@ public class BaseTest {
 		final String os = System.getProperty("os.name");
 		final String userDirectory = System.getProperty("user.dir");
 
-		if (WindowBrowser.equalsIgnoreCase(Browsers.FIREFOX.getBrowserName())) {
+		if (WindowBrowser.equalsIgnoreCase(BROWSERS.FIREFOX.getBrowserName())) {
 			final StringBuilder geckoDriverPath = new StringBuilder();
 			geckoDriverPath.append(userDirectory + File.separator + "resources");
 			if (os.contains(OS.MAC.toString())) {
@@ -88,7 +88,7 @@ public class BaseTest {
 			}
 			System.setProperty("webdriver.gecko.driver", geckoDriverPath.toString());
 			driver = new FirefoxDriver();
-		} else if (WindowBrowser.equalsIgnoreCase(Browsers.CHROME.getBrowserName())) {
+		} else if (WindowBrowser.equalsIgnoreCase(BROWSERS.CHROME.getBrowserName())) {
 			final StringBuilder chromeDriverPath = new StringBuilder();
 			chromeDriverPath.append(userDirectory + File.separator + "resources");
 			if (os.contains(OS.MAC.toString())) {
@@ -106,7 +106,7 @@ public class BaseTest {
 			System.setProperty("webdriver.gecko.driver", geckoDriverPath.toString());
 			System.setProperty("webdriver.chrome.driver", chromeDriverPath.toString());
 			driver = new ChromeDriver();
-		} else if (WindowBrowser.equalsIgnoreCase(Browsers.SAFARI.getBrowserName())) {
+		} else if (WindowBrowser.equalsIgnoreCase(BROWSERS.SAFARI.getBrowserName())) {
 			driver = new SafariDriver();
 
 		}
